@@ -1,103 +1,36 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex justify-between items-center max-w-7xl mx-auto w-full h-[65vh] gap-16">
+      <div className="w-1/2  left my-auto">
+        <h1 className="text-8xl font-extrabold my-4 bg-clip-text text-[transparent] bg-[linear-gradient(90deg,rgba(181,124,0,1)_0%,rgba(145,66,9,1)_66%,rgba(122,64,6,1)_100%)]">COFFELA</h1>
+        <div className="">
+          <p className="font-bold text-3xl">An online coffe store</p>
+          <p className="font-semibold italic text-xl">Your Coffee. Your Way. Anytime. Anywhere.</p>
+          <p className="my-4">Whether you’re starting your morning hustle or savoring a quiet evening, Coffela is here to serve moments that matter. Join thousands of happy coffee lovers who’ve made the switch to better, fresher, and more personalized coffee.</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="flex gap-20 items-center my-8">
+          <button className="bg-[#7A4006] text-white p-2 px-4 rounded-xl font-semibold cursor-pointer">Explore more {">"}</button>
+          <Link href="" className="underline underline-offset-4  px-4 py-2 font-semibold cursor-pointer">Login / Signup</Link>
+        </div>
+        <div className="flex gap-20">
+          <div className="justify-center flex flex-col items-center">
+            <h2 className="">Our products</h2>
+            <p className="font-bold text-3xl -ml-4">+100</p>
+          </div>
+          <div className="justify-center flex flex-col items-center">
+            <h2 className="">Total sales</h2>
+            <p className="font-bold text-3xl -ml-4">+20k</p>
+          </div>
+          <div className="justify-center flex flex-col items-center">
+            <h2 className="">Total orders</h2>
+            <p className="font-bold text-3xl -ml-4">+20k</p>
+          </div>
+        </div>
+      </div>
+      <div className="w-1/2 h-full right">right</div>
     </div>
   );
 }
