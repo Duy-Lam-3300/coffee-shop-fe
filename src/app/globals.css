@@ -11,6 +11,7 @@
   --success-color: #4caf50;
   --error-color: #e53935;
   --card-color: #f7ece6;
+  --background-CoffeLa-Large-Image:#e6e6e6;
   --font-size: 18px;
 }
 
@@ -35,3 +36,4 @@ body {
   /* font-family: Open Sans, Helvetica, Roboto, Arial, sans-serif; */
   font-family: var(--font-mono), var(--font-sans), Helvetica, sans-serif;
 }
+

@@ -38,12 +38,13 @@ export default function ExploreProduct() {
                     <p className="font-semibold text-3xl">Best Seller</p>
                     <p className="italic font-semibold text-xl">Our most popular drink — taste what everyone is raving about!</p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full mt-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full mt-4 ">
                     {sample.map((product) => (
                         <ProductCard key={product._id} product={product} />
                     ))}
                 </div>
             </div>
+            
         </div>
     );
 }
