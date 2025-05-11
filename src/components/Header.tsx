@@ -33,7 +33,7 @@ export default function Header() {
     }
 
     return (
-        <header className="p-6 md:p-10 font-semibold text-lg bg-white w-full">
+        <header className="py-2 px-6 md:p-8 font-semibold text-lg bg-white w-screen fixed  z-50 h-[10vh]">
             <div className=" justify-between max-w-7xl mx-auto items-center flex ">
 
                 <Link href={"/"} className={`hidden md:block text-5xl font-bold ${dancingScript.className} pt-1`}>CoffeLa</Link>
@@ -56,7 +56,7 @@ export default function Header() {
                     </nav>
                     <button>Login/Signup</button>
                 </div>
-                <div className="md:hidden flex justify-between w-full items-center">
+                <div className="md:hidden h-fit flex justify-between w-full items-center">
                     <Link className="h-16 w-16 block relative" href="/">
                         <Image
                             src="/logo5.png"
@@ -72,7 +72,8 @@ export default function Header() {
                 </div>
             </div>
             {/* mobile */}
-            {isMenuOpen && (<div className="fixed md:hidden bg-black/70 h-full z-50 w-full inset-0 text-white backdrop-blur-sm transition-opacity duration-300">
+            {isMenuOpen && (
+            <div className="fixed md:hidden bg-black/70 h-full z-50 w-full inset-0 text-white backdrop-blur-sm transition-opacity duration-300">
                 <div className="relative w-[100vw] h-[100vh] p-10 ">
                     <button onClick={() => setIsMenuOpen(false)} className="text-2xl absolute right-6 top-6 cursor-pointer text-white/50 hover:text-white" aria-label="Close menu">
                         x

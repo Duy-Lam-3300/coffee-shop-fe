@@ -14,8 +14,8 @@ export default function AboveTheFold() {
         ]
     }
     return (
-        <div className="bg-[var(--background-CoffeLa-Large-Image)]">
-            <div className="flex justify-between items-center mx-auto max-w-7xl h-[65vh] gap-16 relative">
+        <div className="bg-[var(--background-CoffeLa-Large-Image)] bg-">
+            <div className="flex justify-between items-center mx-auto max-w-7xl h-[70vh] gap-16 relative">
                 <div className="w-1/2  left my-auto z-10">
                     <h1 className={`text-8xl font-extrabold my-4 bg-clip-text text-[transparent] 
                     bg-[linear-gradient(90deg,rgba(181,124,0,1)_0%,rgba(145,66,9,1)_66%,rgba(122,64,6,1)_100%)]`}>{information.appName}</h1>
