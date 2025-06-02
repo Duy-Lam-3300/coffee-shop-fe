@@ -50,22 +50,28 @@ export default function CoffeeBenefitsSection() {
         )
     }
     return (
-        <div className="w-full bg-[var(--background)]">
-            <div className="max-w-7xl mx-auto h-[70vh] relative">
+        <div className="w-full bg-[var(--second-background)] pt-16">
+            <div className="max-w-7xl mx-auto">
+                <div className="space-y-2">
+                    <div className="italic">Our Core Benefits</div>
+                    <h2 className="font-bold text-2xl"> Rooted in Calm, Served with Care</h2>
+                </div>
+            </div>
+            <div className="max-w-7xl mx-auto h-[70vh] relative -translate-y-10">
                 <div className="flex bg-[var(--main-color)] justify-between items-center px-12 text-2xl font-semibold h-[8vh] absolute w-full top-16">
                     {headers.map((item, index) =>
                         <p key={index} className="text-white">
                             {item}
                         </p>)}
                 </div>
-                <div className=" flex justify-between  items-end">
-                    <div className="flex flex-col items-center justify-start gap-20 w-[30%] ">
+                <div className=" flex justify-between items-end">
+                    <div className="flex flex-col items-center justify-start gap-20 w-[30%] h-[24rem]  ">
                         {benefitContentLeft.map((item, index) => (
                             <BenifitItemLeft {...item} key={index} />
                         ))}
                     </div>
                     <div className="relative translate-y-16"><Image src={imageLink} alt="Cup of Coffee" width={300} height={250} /></div>
-                    <div className="flex flex-col items-center justify-start gap-20 w-[30%] ">
+                    <div className="flex flex-col items-center justify-start gap-20 w-[30%] h-[24rem]  ">
                         {benefitContentRight.map((item, index) => (
                             <BenifitItemRight {...item} key={index} />
                         ))}

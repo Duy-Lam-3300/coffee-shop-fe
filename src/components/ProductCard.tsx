@@ -21,13 +21,13 @@ export default function ProductCard({ product }: ProductCardProps) {
     const totalPrice = (product.price + extraCharge).toFixed(2);
 
     return (
-        <div className="bg-[var(--card-color)] rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 p-4">
+        <div className="bg-[var(--card-color)] rounded-xl shadow-xl border-2 border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 p-4">
             <div className="relative h-48 w-full">
                 <Image
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-cover"
+                    className="object-cover border-2 border-gray-300 rounded-lg"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     priority={false}
                 />

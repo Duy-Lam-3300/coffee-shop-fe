@@ -18,7 +18,7 @@ export default function product() {
         <div className="">
 
             <div className="">product here</div>
-            {products.map((item,index) => (<div key={index}>
+            {products.map((item, index) => (<div key={index}>
                 {item.name}
             </div>))}
         </div>
