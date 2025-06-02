@@ -51,7 +51,7 @@ export default function CoffeeBenefitsSection() {
     }
     return (
         <div className="w-full bg-[var(--second-background)] pt-16">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto not-md:px-8">
                 <div className="space-y-2">
                     <div className="italic">Our Core Benefits</div>
                     <h2 className="font-bold text-2xl"> Rooted in Calm, Served with Care</h2>
@@ -70,7 +70,9 @@ export default function CoffeeBenefitsSection() {
                             <BenifitItemLeft {...item} key={index} />
                         ))}
                     </div>
-                    <div className="relative translate-y-16"><Image src={imageLink} alt="Cup of Coffee" width={300} height={250} /></div>
+                    <div className="relative translate-y-16">
+                        <Image src={imageLink} alt="Cup of Coffee" width={300} height={250} />
+                    </div>
                     <div className="flex flex-col items-center justify-start gap-20 w-[30%] h-[24rem]  ">
                         {benefitContentRight.map((item, index) => (
                             <BenifitItemRight {...item} key={index} />

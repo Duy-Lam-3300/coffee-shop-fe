@@ -151,7 +151,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <hr className="text-white opacity-65" />
-                <div className="text-sm text-[#ffffff] ml-4">
+                <div className="text-sm text-[#ffffff] ml-4 md:ml-0">
                     <pre className="w-fit">
                         {`CoffeLa | CEO Nguyen Duy Lam
 Phone: 032-757-6730 | Email: Duylam3300@gmail.com

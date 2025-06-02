@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { Dancing_Script } from "next/font/google";
 const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
@@ -22,10 +22,10 @@ export default function Header() {
         { name: "About", path: "/about" },
     ];
 
-    const SECONDARY_ITEMS = [
-        { name: "Chat", path: "/chat" },
-        { name: "Cart", path: "/cart" },
-    ];
+    // const SECONDARY_ITEMS = [
+    //     { name: "Chat", path: "/chat", Icon: ShoppingCart },
+    //     { name: "Cart", path: "/cart", Icon: ShoppingCart },
+    // ];
 
     const handleRouting = (location: string) => {
         router.push(location);
@@ -42,16 +42,18 @@ export default function Header() {
                 {/* desktop */}
                 <nav className="md:flex hidden  items-center">
                     <ul className=" space-x-6 flex">
-                        {NAV_ITEMS.map((item) => (<li key={item.path}>
-                            <Link href={item.path} className="navItem text-black">{item.name}</Link>
+                        {NAV_ITEMS.map((item) => (<li className="hover:scale-110 mx-6  hover:border-b-2 h-[2rem]" key={item.path}>
+                            <Link href={item.path} className="navItem text-black ">{item.name}</Link>
                         </li>))}
                     </ul>
                 </nav>
                 <div className="md:flex hidden justify-between items-center space-x-6">
                     <nav >
                         <ul className="flex justify-between space-x-4">
-                            <li>Chat</li>
-                            <li>Cart</li>
+                            <li className="hover:scale-110 cursor-pointer relative"><ShoppingCart className="w-7 h-7" />
+                                <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>1</p></div>
+                            </li>
+
                         </ul>
                     </nav>
                     <button>Login/Signup</button>
@@ -75,17 +77,26 @@ export default function Header() {
             {isMenuOpen && (
                 <div className="fixed md:hidden bg-black/70 h-full z-50 w-full inset-0 text-white backdrop-blur-sm transition-opacity duration-300">
                     <div className="relative w-[100vw] h-[100vh] p-10 ">
-                        <button onClick={() => setIsMenuOpen(false)} className="text-2xl absolute right-6 top-6 cursor-pointer text-white/50 hover:text-white" aria-label="Close menu">
+                        <button onClick={() => setIsMenuOpen(false)} className="text-2xl absolute right-11 top-6 cursor-pointer text-white/50 hover:text-white" aria-label="Close menu">
                             x
                         </button>
+
                         <nav className="mt-10">
-                            <ul className="space-y-4">
+                            <div className="flex items-end gap-6">
+                                <Link href={"/"} className={` text-5xl font-bold text-white ${dancingScript.className} pt-1`}>CoffeLa</Link>
+                                <p className="text-sm text-gray-200 font-medium ">Elegance in every sip</p>
+                            </div>
+                            <ul className="space-y-4 mt-6">
                                 {NAV_ITEMS.map((item) => (
                                     <li onClick={() => handleRouting(item.path)} key={item.path} className="border-b-1 border-white/20 text-white/50 hover:border-white hover:text-white py-4 flex justify-between pr-2 cursor-pointer hover:text-xl "><span>{item.name}</span><span>→</span></li>
                                 ))}
 
-                                <li onClick={() => handleRouting("")} className="border-b-1 border-whit py-4 flex justify-between pr-2"><p>Cart</p><p>{">"}</p></li>
-                                <li onClick={() => handleRouting("")} className="border-b-1 border-whit py-4  pr-2"><p>Login / Signup</p></li>
+                                <li onClick={() => handleRouting("")} className="py-4 mt-4 flex justify-between pr-2">
+                                    <div className="hover:scale-110 cursor-pointer relative"><ShoppingCart className="w-7 h-7" />
+                                        <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>1</p></div>
+                                    </div>
+                                    <div className="">Login / Signup</div>
+                                </li>
                             </ul>
                         </nav>
                     </div>

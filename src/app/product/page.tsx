@@ -5,7 +5,7 @@ import { Product } from "@/types/product";
 import { useEffect, useState } from "react"
 
 
-export default function product() {
+export default function ProductPage() {
     const [products, setProducts] = useState<Product[]>([]);
     useEffect(() => {
         const fetching = async () => {
