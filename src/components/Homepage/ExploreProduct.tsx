@@ -59,18 +59,20 @@ export default function ExploreProduct() {
     ]
     return (
         <div className="pb-8">
-            <div className="max-w-7xl mx-auto">
-                <div className="w-full text-center space-y-4">
-                    <p className="font-semibold text-3xl">Best Seller</p>
-                    <p className="italic font-semibold text-xl">Our most popular drink — taste what everyone is raving about!</p>
+            <div className="max-w-7xl mx-auto ">
+                <div className="max-w-7xl mx-auto not-md:px-8">
+                    <div className="space-y-2">
+                        <div className="italic">Best Seller</div>
+                        <h2 className="font-bold text-2xl"> Our most popular drink</h2>
+                    </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full my-16  ">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-8 w-full my-10 not-md:px-8">
                     {sample.map((product) => (
                         <ProductCard key={product._id} product={product} />
                     ))}
                 </div>
             </div>
-            
+
         </div>
     );
 }
