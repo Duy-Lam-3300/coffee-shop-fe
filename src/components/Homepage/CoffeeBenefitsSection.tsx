@@ -51,13 +51,14 @@ export default function CoffeeBenefitsSection() {
     }
     return (
         <div className="w-full bg-[var(--second-background)] pt-16">
+
             <div className="max-w-7xl mx-auto not-md:px-8">
                 <div className="space-y-2">
                     <div className="italic">Our Core Benefits</div>
                     <h2 className="font-bold text-2xl"> Rooted in Calm, Served with Care</h2>
                 </div>
             </div>
-            <div className="max-w-7xl mx-auto h-[70vh] relative -translate-y-10">
+            <div className="max-w-7xl mx-auto h-[70vh] relative -translate-y-10 hidden md:block">
                 <div className="flex bg-[var(--main-color)] justify-between items-center px-12 text-2xl font-semibold h-[8vh] absolute w-full top-16">
                     {headers.map((item, index) =>
                         <p key={index} className="text-white">
@@ -78,6 +79,18 @@ export default function CoffeeBenefitsSection() {
                             <BenifitItemRight {...item} key={index} />
                         ))}
                     </div>
+                </div>
+            </div>
+            <div className="max-w-7xl mx-auto relative space-y-16 px-8 pt-10 py-16 md:hidden">
+                <div className="flex flex-col items-center justify-start gap-20  h-[24rem]  ">
+                    {benefitContentLeft.map((item, index) => (
+                        <BenifitItemLeft {...item} key={index} />
+                    ))}
+                </div>
+                <div className="flex flex-col items-center justify-start gap-20  h-[24rem]  ">
+                    {benefitContentRight.map((item, index) => (
+                        <BenifitItemRight {...item} key={index} />
+                    ))}
                 </div>
             </div>
         </div>
