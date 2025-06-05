@@ -2,11 +2,15 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, CircleX } from "lucide-react";
 import Image from "next/image";
 import { Dancing_Script } from "next/font/google";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+
+import { useAppDispatch } from "@/hooks/store";
+
+import { removeFromCart } from "@/redux/store/slice/cartSlice";
 
 const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -24,6 +28,7 @@ export default function Header() {
         { name: "Packing", path: "/packing" },
         { name: "About", path: "/about" },
     ];
+    const dispatch = useAppDispatch();
 
     const cartItems = useSelector((state: RootState) => state.cart.items);
     const cartItemsLength = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -31,6 +36,12 @@ export default function Header() {
     const handleRouting = (location: string) => {
         router.push(location);
         setIsMenuOpen(false);
+    }
+
+    const handleRemoveItem = (id: string) => {
+        console.log("Removing item with id:", id); // Debug
+        dispatch(removeFromCart(id));
+
     }
 
     useEffect(() => {
@@ -47,8 +58,8 @@ export default function Header() {
     }, [isMenuOpen]);
 
     return (
-        <header className="py-2 px-6 md:p-8 font-semibold text-lg bg-white w-screen fixed  z-50 h-[10vh] shadow-2xl border-b-2 border-[#e6e6e6]">
-            <div className=" justify-between max-w-7xl mx-auto items-center flex ">
+        <header className="select-none py-2 px-6 md:pt-4 font-semibold text-lg bg-white w-screen fixed  z-50 h-[10vh] shadow-2xl border-b-2 border-[#e6e6e6]">
+            <div className=" justify-between max-w-7xl mx-auto items-center flex relative h-full">
 
                 <Link href={"/"} className={`hidden md:block text-5xl font-bold ${dancingScript.className} pt-1`}>CoffeLa</Link>
 
@@ -61,7 +72,7 @@ export default function Header() {
                         </li>))}
                     </ul>
                 </nav>
-                <div className="md:flex hidden justify-between items-center space-x-6">
+                <div className="md:flex hidden justify-between items-center relative w-[12rem] group">
                     <nav >
                         <ul className="flex justify-between space-x-4">
                             <li className="hover:scale-110 cursor-pointer relative"><ShoppingCart className="w-7 h-7" />
@@ -71,7 +82,37 @@ export default function Header() {
                         </ul>
                     </nav>
                     <div className="flex gap-2"><a className="cursor-pointer hover:underline hover:scale-110">Login</a><span className="cursor-default"> / </span><a className="cursor-pointer hover:underline hover:scale-110">Signup</a></div>
+
+                    <div className="group-hover:block hidden absolute bg-white shadow-2xl border-3 border-gray-200 shadow-gray-400 p-8  bottom-0 right-0 translate-y-full  h-fit w-[20rem]">
+                        <ul >
+                            {cartItems.map((item, index) => (
+
+                                <li key={index} className="">
+                                    <div className="grid grid-cols-[auto_minmax(0,1fr)] grid-rows-2  gap-2">
+                                        <div className="w-16 h-16 relative row-span-2">
+                                            <Image src={item?.img || "/logoMobile.png"} alt="product" fill className="rounded-md border-2 border-gray-400" />
+                                        </div>
+                                        <div className="flex justify-between items-start">
+                                            <span className="text-xl">{item.name}</span>
+                                            <CircleX className="cursor-pointer" onClick={() => handleRemoveItem(item.id)} />
+                                        </div>
+                                        <div className="flex justify-between items-end">
+                                            <span className="text-base text-gray-500">
+                                                {item.quantity} * {item.price}$
+                                            </span>
+                                            <span className="text-lg text-red-500">{item.quantity * item.price}$</span>
+                                        </div>
+                                    </div>
+                                    <hr className="text-gray-400 my-4" />
+                                </li>
+
+                            ))}
+                        </ul>
+                    </div>
+
+
                 </div>
+
                 <div className="md:hidden h-fit flex justify-between w-full items-center">
                     <Link className="h-14 w-14 block relative" href="/">
                         <Image
@@ -90,6 +131,8 @@ export default function Header() {
                         ☰
                     </button>
                 </div>
+
+
             </div>
             {/* mobile */}
             {isMenuOpen && (

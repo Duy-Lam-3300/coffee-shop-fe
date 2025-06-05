@@ -23,7 +23,10 @@ const cartSlice = createSlice({
             }
         },
         removeFromCart: (state, action: PayloadAction<string>) => {
+            console.log("Reducer received id to remove:", action.payload);
+            console.log("Items before:", state.items);
             state.items = state.items.filter(item => item.id !== action.payload);
+            console.log("Items after:", state.items);
         },
         updateQuantity: (state, action: PayloadAction<{ id: string, quantity: number }>) => {
             const item = state.items.find(item => item.id === action.payload.id);

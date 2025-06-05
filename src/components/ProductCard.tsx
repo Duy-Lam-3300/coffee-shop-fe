@@ -1,6 +1,6 @@
 'use client'
 import { useAppDispatch } from "@/hooks/store";
-import { addToCart } from "@/redux/store/slices/cartSlice";
+import { addToCart } from "@/redux/store/slice/cartSlice";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import { useState } from "react";
@@ -27,7 +27,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
     const dispatch = useAppDispatch();
     const handleAddToCart = () => {
-        dispatch(addToCart({ id: product._id, name: product.name, price: product.price, quantity: 1 }))
+        dispatch(addToCart({ id: product._id, name: product.name, price: product.price, quantity: 1,img:product.image }))
         setIsAnimating(true);
 
         setTimeout(() => {
