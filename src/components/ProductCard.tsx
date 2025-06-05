@@ -108,17 +108,20 @@ export default function ProductCard({ product }: ProductCardProps) {
                     >
                         {product.status ? 'Add to Cart' : 'Unavailable'}
                     </motion.span>
-                    {isAnimating && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 0 }}
-                            animate={{ opacity: 1, y: -20 }}
-                            exit={{ opacity: 0, y: -30 }}
-                            transition={{ duration: 0.5 }}
-                            className="absolute -top-4 -right-1 text-[var(--main-color)] flex gap-1 font-bold md:-right-2 text-xl pointer-events-none"
-                        >
-                            <Coffee /> +1
-                        </motion.div>
-                    )}
+                    <AnimatePresence>
+
+                        {isAnimating && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 0 }}
+                                animate={{ opacity: 1, y: -20 }}
+                                exit={{ opacity: 0, y: -30 }}
+                                transition={{ duration: 0.5 }}
+                                className="absolute -top-4 -right-1 text-[var(--main-color)] flex gap-1 font-bold md:-right-2 text-xl pointer-events-none"
+                            >
+                                <Coffee /> +1
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </motion.button>
             </div>
         </div>
