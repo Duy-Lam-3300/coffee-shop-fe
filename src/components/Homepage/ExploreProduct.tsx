@@ -1,3 +1,4 @@
+
 import { Product } from "@/types/product";
 import ProductCard from "../ProductCard";
 
@@ -31,7 +32,7 @@ export default function ExploreProduct() {
             updatedAt: "1745489262251"
         },
         {
-            _id: "680a0d6e4f4c13d4a72ffad4",
+            _id: "680a0d6e4f4c13d4a72ffad5",
             name: "Coffee",
             price: 30,
             description: "",
@@ -44,7 +45,7 @@ export default function ExploreProduct() {
             updatedAt: "1745489262251"
         },
         {
-            _id: "680a0d6e4f4c13d4a72ffad4",
+            _id: "680a0d6e4f4c13d4a72ffad6",
             name: "Coffee",
             price: 30,
             description: "",

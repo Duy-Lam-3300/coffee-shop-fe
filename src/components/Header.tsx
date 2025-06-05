@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { Dancing_Script } from "next/font/google";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+
 const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
 
 
@@ -22,10 +25,8 @@ export default function Header() {
         { name: "About", path: "/about" },
     ];
 
-    // const SECONDARY_ITEMS = [
-    //     { name: "Chat", path: "/chat", Icon: ShoppingCart },
-    //     { name: "Cart", path: "/cart", Icon: ShoppingCart },
-    // ];
+    const cartItems = useSelector((state: RootState) => state.cart.items);
+    const cartItemsLength = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
     const handleRouting = (location: string) => {
         router.push(location);
@@ -33,17 +34,17 @@ export default function Header() {
     }
 
     useEffect(() => {
-    if (isMenuOpen) {
-        document.body.classList.add("overflow-hidden");
-    } else {
-        document.body.classList.remove("overflow-hidden");
-    }
+        if (isMenuOpen) {
+            document.body.classList.add("overflow-hidden");
+        } else {
+            document.body.classList.remove("overflow-hidden");
+        }
 
-    // Cleanup khi component unmount
-    return () => {
-        document.body.classList.remove("overflow-hidden");
-    };
-}, [isMenuOpen]);
+        // Cleanup khi component unmount
+        return () => {
+            document.body.classList.remove("overflow-hidden");
+        };
+    }, [isMenuOpen]);
 
     return (
         <header className="py-2 px-6 md:p-8 font-semibold text-lg bg-white w-screen fixed  z-50 h-[10vh] shadow-2xl border-b-2 border-[#e6e6e6]">
@@ -64,7 +65,7 @@ export default function Header() {
                     <nav >
                         <ul className="flex justify-between space-x-4">
                             <li className="hover:scale-110 cursor-pointer relative"><ShoppingCart className="w-7 h-7" />
-                                <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>1</p></div>
+                                <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>{cartItemsLength}</p></div>
                             </li>
 
                         </ul>
@@ -81,6 +82,10 @@ export default function Header() {
                         />
                     </Link>
                     <Link className={`font-bold text-4xl ${dancingScript.className}  mr-6`} href={"/"}>CoffeLa</Link>
+
+                    <div className="hover:scale-110 cursor-pointer absolute right-20"><ShoppingCart className="w-7 h-7" />
+                        <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>{cartItemsLength}</p></div>
+                    </div>
                     <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-xl cursor-pointer">
                         ☰
                     </button>
@@ -105,9 +110,7 @@ export default function Header() {
                                 ))}
 
                                 <li onClick={() => handleRouting("")} className="py-4 mt-4 flex justify-between pr-2">
-                                    <div className="hover:scale-110 cursor-pointer relative"><ShoppingCart className="w-7 h-7" />
-                                        <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>1</p></div>
-                                    </div>
+
                                     <div className="flex gap-8"><a className="cursor-pointer hover:underline hover:scale-110">Login</a><span> / </span><a className="cursor-pointer hover:underline hover:scale-110">Signup</a></div>
                                 </li>
                             </ul>

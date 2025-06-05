@@ -1,7 +1,11 @@
-"use client"
+'use client'
+import { useAppDispatch } from "@/hooks/store";
+import { addToCart } from "@/redux/store/slices/cartSlice";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Coffee } from "lucide-react";
 
 interface ProductCardProps {
     product: Product
@@ -16,10 +20,20 @@ export default function ProductCard({ product }: ProductCardProps) {
     const [cartForm, setCartForm] = useState<CartForm>({
         choosenSize: product ? product.sizes[0] : null,
     });
+    const [isAnimating, setIsAnimating] = useState(false);
     const sizeIndex = product.sizes.indexOf(cartForm.choosenSize || "");
     const extraCharge = sizeIndex >= 0 ? (product.price * (sizeIndex * sizeIndex * 0.4)) : 0;
     const totalPrice = (product.price + extraCharge).toFixed(2);
 
+    const dispatch = useAppDispatch();
+    const handleAddToCart = () => {
+        dispatch(addToCart({ id: product._id, name: product.name, price: product.price, quantity: 1 }))
+        setIsAnimating(true);
+
+        setTimeout(() => {
+            setIsAnimating(false)
+        }, 600);
+    }
     return (
         <div className="bg-[var(--card-color)] rounded-xl shadow-xl border-2 border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 p-4">
             <div className="relative md:h-48 h-72 w-full">
@@ -78,16 +92,34 @@ export default function ProductCard({ product }: ProductCardProps) {
                         </div>
                     )}
                 </div>
-
-                <button
-                    className={`mt-4 w-full py-3 md:py-2 rounded-md text-xl md:text-base font-medium transition-colors cursor-pointer ${product.status
+                <motion.button
+                    className={`mt-4 w-full relative py-3 md:py-2 rounded-md text-xl md:text-base font-medium transition-colors cursor-pointer ${product.status
                         ? 'bg-[var(--main-color)] hover:bg-[var(--accent-color)] text-white'
                         : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                         }`}
+                    whileTap={{ scale: 0.85 }}
                     disabled={!product.status}
+                    onClick={handleAddToCart}
                 >
-                    {product.status ? 'Add to Cart' : 'Unavailable'}
-                </button>
+                    <motion.span
+                        key={isAnimating ? "animate" : "static"}
+                        animate={isAnimating ? { scale: [1, 1.4, 1], rotate: [0, 10, -10, 0] } : {}}
+                        transition={{ duration: 0.4 }}
+                    >
+                        {product.status ? 'Add to Cart' : 'Unavailable'}
+                    </motion.span>
+                    {isAnimating && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 0 }}
+                            animate={{ opacity: 1, y: -20 }}
+                            exit={{ opacity: 0, y: -30 }}
+                            transition={{ duration: 0.5 }}
+                            className="absolute -top-4 -right-1 text-[var(--main-color)] flex gap-1 font-bold md:-right-2 text-xl pointer-events-none"
+                        >
+                            <Coffee /> +1
+                        </motion.div>
+                    )}
+                </motion.button>
             </div>
         </div>
     )
