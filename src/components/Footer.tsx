@@ -152,13 +152,20 @@ export default function Footer() {
                 </div>
                 <hr className="text-white opacity-65" />
                 <div className="text-sm text-[#ffffff] ml-4 md:ml-0">
-                    <pre className="w-fit">
+                    <pre className="w-fit not-md:hidden">
                         {`CoffeLa | CEO Nguyen Duy Lam
 Phone: 032-757-6730 | Email: Duylam3300@gmail.com
 Business Registration Number: 000-00-000000
 Personal Information Protection Officer: Nguyen Duy Lam
 © CoffeLa Co., Ltd. 2025, All rights reserved.`}
                     </pre>
+                    <p className="w-fit md:hidden">
+                        {`CoffeLa | CEO Nguyen Duy Lam
+Phone: 032-757-6730 | Email: Duylam3300@gmail.com
+Business Registration Number: 000-00-000000
+Personal Information Protection Officer: Nguyen Duy Lam
+© CoffeLa Co., Ltd. 2025, All rights reserved.`}
+                    </p>
                 </div>
             </div>
 
