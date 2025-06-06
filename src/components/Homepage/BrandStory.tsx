@@ -48,11 +48,11 @@ export default function BrandStory() {
                         </p>
                     </div>
                 </div>
-                <div className=" rounded-2xl md:rounded-4xl  md:row-span-2 relative overflow-hidden not-md:col-span-3 not-md:h-[30vh]">
+                <div className=" rounded-2xl md:rounded-4xl  md:row-span-2 relative overflow-hidden not-md:col-span-3 not-md:h-[27vh]">
                     <Image src={coffeeBean} fill alt="coffe bean" />
                 </div>
-                <div className="rounded-2xl md:rounded-4xl  overflow-hidden relative not-md:col-span-3 not-md:h-[30vh] not-md:mt-8"><Image src={lightbulb} fill alt="coffe bean" /></div>
-                <div className="flex justify-between items-center gap-4 not-md:col-span-3 not-md:h-[30vh] not-md:mt-8">
+                <div className="rounded-2xl md:rounded-4xl  overflow-hidden relative not-md:col-span-3 not-md:h-[27vh] not-md:mt-8"><Image src={lightbulb} fill alt="coffe bean" /></div>
+                <div className="flex justify-between items-center gap-4 not-md:col-span-3 not-md:h-[27vh] not-md:mt-8">
                     <div className="bg-[var(--main-color)] w-full h-full rounded-2xl md:rounded-4xl  overflow-hidden relative"><Image src={glassOfCoffee} fill alt="coffe bean" /></div>
                     <div className="bg-[var(--main-color)] w-full h-full rounded-2xl md:rounded-4xl  overflow-hidden relative"><Image src={glassOfCoffee2} fill alt="coffe bean" /></div>
 
