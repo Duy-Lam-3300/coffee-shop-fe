@@ -99,7 +99,7 @@ export default function Footer() {
     return (
         <div className="bg-[var(--main-color)] w-full py-12 text-white">
             <div className="max-w-7xl  mx-auto space-y-8">
-                <div className="grid grid-row-4  md:grid-cols-7 gap-4 md:gap-16 md:h-[21vh] ">
+                <div className="grid grid-row-4  md:grid-cols-7 gap-4 md:gap-16 md:h-[21vh] justify-center ">
                     {/*Col 01*/}
                     <div className="flex flex-col gap-4 col-span-2 row-start-1 col-start-1 items-center md:items-start my-8 mb-8 md:my-0 md:mb-0">
                         <div className="flex gap-4 items-center mb-4">
@@ -122,20 +122,20 @@ export default function Footer() {
                         <div className="md:flex gap-4 hidden"><phoneNumber.Icon className="cursor-pointer hover:scale-125 " /> <p>{phoneNumber.label}</p></div>
                     </div>
                     {/*Col 02*/}
-                    <div className="flex flex-col  col-span-1 mx-auto md:col-span-1  md:text-start gap-4 w-full text-nowrap px-18 md:px-0">
-                        {customerServices.map((item, index) => (<a className="py-4 md:py-2 px-2 hover:scale-110 hover:underline underline-offset-4 items-center justify-center font-semibold" href={item.value} key={index}>{item.label}</a>))}
+                    <div className="flex flex-col  mx-auto md:col-span-1  md:text-start gap-4 w-full text-nowrap items-center md:px-0">
+                        {customerServices.map((item, index) => (<a className="py-4 md:py-2 px-2 w-fit hover:scale-110 hover:underline underline-offset-4 items-center justify-center font-semibold" href={item.value} key={index}>{item.label}</a>))}
                     </div>
                     {/*Col 03*/}
-                    <div className="flex flex-col  col-span-1 mx-auto row-span-2 md:col-span-1  md:text-start gap-4 w-full text-nowrap px-18 md:px-0">
-                        {brandData.map((item, index) => (<a className="py-4 md:py-2 px-2 hover:scale-110 hover:underline underline-offset-4 items-center justify-center font-semibold" href={item.value} key={index}>{item.label}</a>))}
+                    <div className="flex flex-col  mx-auto row-span-2 md:col-span-1  md:text-start gap-4 w-full text-nowrap items-center md:px-0">
+                        {brandData.map((item, index) => (<a className="py-4 md:py-2 px-2 w-fit hover:scale-110 hover:underline underline-offset-4 items-center justify-center font-semibold" href={item.value} key={index}>{item.label}</a>))}
                     </div>
                     {/*Col 04*/}
-                    <div className="flex flex-col  col-span-1 mx-auto md:col-span-1  md:text-start gap-4 w-full text-nowrap px-18 md:px-0">
-                        {privacyData.map((item, index) => (<a className="py-4 md:py-2 px-2 hover:scale-110 hover:underline underline-offset-4 items-center justify-center font-semibold" href={item.value} key={index}>{item.label}</a>))}
+                    <div className="flex flex-col  mx-auto md:col-span-1  md:text-start gap-4 w-full text-nowrap items-center md:px-0">
+                        {privacyData.map((item, index) => (<a className="py-4 md:py-2 px-2 w-fit hover:scale-110 hover:underline underline-offset-4 items-center justify-center font-semibold" href={item.value} key={index}>{item.label}</a>))}
                     </div>
                     {/*Col 05*/}
 
-                    <div className="flex flex-col gap-4 col-span-2 w-full md:mt-1 text-center px-12 md:text-start md:p-0 mt-8 mb-4 md:mb-0">
+                    <div className="flex flex-col gap-4 col-span-2 md:mt-1 text-center md:text-start md:p-0 mt-8 mb-4 md:mb-0 w-full px-4">
                         <div className="font-semibold text-lg">SUBSCRIBE TO STAY INFORMED.</div>
                         <div className="mb-4 text-justify md:text-start">Sign up for our email newsletter to be the first to know about exclusive offers, CoffeLa news, events, and exciting new products.</div>
                         <div className="w-full flex">
