@@ -124,10 +124,10 @@ export default function Header() {
                     </Link>
                     <Link className={`font-bold text-4xl ${dancingScript.className}  mr-6`} href={"/"}>CoffeLa</Link>
 
-                    <div className="hover:scale-110 cursor-pointer absolute right-20"><ShoppingCart className="w-7 h-7" />
+                    <div className="hover:scale-110 cursor-pointer absolute right-16"><ShoppingCart className="w-7 h-7" />
                         <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>{cartItemsLength}</p></div>
                     </div>
-                    <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-xl cursor-pointer">
+                    <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-3xl cursor-pointer ">
                         ☰
                     </button>
                 </div>
@@ -147,9 +147,9 @@ export default function Header() {
                                 <Link href={"/"} className={` text-5xl font-bold text-white ${dancingScript.className} pt-1`}>CoffeLa</Link>
                                 <p className="text-sm text-gray-200 font-medium ">Elegance in every sip</p>
                             </div>
-                            <ul className="space-y-4 mt-6">
+                            <ul className="space-y-8 mt-12">
                                 {NAV_ITEMS.map((item) => (
-                                    <li onClick={() => handleRouting(item.path)} key={item.path} className="border-b-1 border-white/20 text-white/50 hover:border-white focus:border-white hover:text-white focus:text-white py-4 flex justify-between pr-2 cursor-pointer hover:text-xl focus:text-xl "><span>{item.name}</span><span>→</span></li>
+                                    <li onClick={() => handleRouting(item.path)} key={item.path} className="border-b-1  border-white text-white py-4 flex justify-between pr-2 cursor-pointer text-xl "><span>{item.name}</span><span>→</span></li>
                                 ))}
 
                                 <li onClick={() => handleRouting("")} className="py-4 mt-4 flex justify-between pr-2">
