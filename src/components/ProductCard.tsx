@@ -116,9 +116,9 @@ export default function ProductCard({ product }: ProductCardProps) {
                                 animate={{ opacity: 1, y: -20 }}
                                 exit={{ opacity: 0, y: -30 }}
                                 transition={{ duration: 0.5 }}
-                                className="absolute -top-1 md:-top-4 -right-1 text-[var(--main-color)] flex gap-1 font-bold md:-right-2 text-xl pointer-events-none"
+                                className="absolute -top-4 md:-right-2 not-md:left-1/2 not-md:-translate-x-[50%] w-fit text-[var(--main-color)] flex gap-1 font-bold text-xl not-md:text-3xl pointer-events-none"
                             >
-                                <Coffee /> +1
+                                <Coffee className="not-md:w-[2.25rem] not-md:h-[2.25rem] not-md:-translate-y-[0.1rem]"/> +1
                             </motion.div>
                         )}
                     </AnimatePresence>
