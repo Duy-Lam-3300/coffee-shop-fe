@@ -116,7 +116,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                                 animate={{ opacity: 1, y: -20 }}
                                 exit={{ opacity: 0, y: -30 }}
                                 transition={{ duration: 0.5 }}
-                                className="absolute -top-4 -right-1 text-[var(--main-color)] flex gap-1 font-bold md:-right-2 text-xl pointer-events-none"
+                                className="absolute -top-1 md:-top-4 -right-1 text-[var(--main-color)] flex gap-1 font-bold md:-right-2 text-xl pointer-events-none"
                             >
                                 <Coffee /> +1
                             </motion.div>

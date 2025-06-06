@@ -149,7 +149,7 @@ export default function Header() {
                             </div>
                             <ul className="space-y-4 mt-6">
                                 {NAV_ITEMS.map((item) => (
-                                    <li onClick={() => handleRouting(item.path)} key={item.path} className="border-b-1 border-white/20 text-white/50 hover:border-white hover:text-white py-4 flex justify-between pr-2 cursor-pointer hover:text-xl "><span>{item.name}</span><span>→</span></li>
+                                    <li onClick={() => handleRouting(item.path)} key={item.path} className="border-b-1 border-white/20 text-white/50 hover:border-white focus:border-white hover:text-white focus:text-white py-4 flex justify-between pr-2 cursor-pointer hover:text-xl focus:text-xl "><span>{item.name}</span><span>→</span></li>
                                 ))}
 
                                 <li onClick={() => handleRouting("")} className="py-4 mt-4 flex justify-between pr-2">
