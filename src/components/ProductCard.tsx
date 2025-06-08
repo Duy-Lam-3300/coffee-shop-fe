@@ -7,7 +7,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Coffee } from "lucide-react";
 import { Flame, Heart } from "lucide-react";
-import { body } from "framer-motion/client";
+
 
 interface ProductCardProps {
     product: Product

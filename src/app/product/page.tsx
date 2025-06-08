@@ -1,16 +1,16 @@
 "use client"
 
 import { DetailProductCard } from "@/components/ProductCard";
-import productAPI from "@/lib/api/productApi"
+// import productAPI from "@/lib/api/productApi"
 import { Product } from "@/types/product";
-import { useEffect, useMemo, useState } from "react"
+import {  useMemo, useState } from "react"
 
 
-
-import { Dancing_Script } from "next/font/google";
 import { useSearchParams, useRouter } from "next/navigation";
 
-const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
+// import { Dancing_Script } from "next/font/google";
+// const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
+
 
 const drinkTypes = [
     {
@@ -33,7 +33,7 @@ const drinkTypes = [
 
 
 export default function ProductPage() {
-    const [products, setProducts] = useState<Product[]>([]);
+    // const [products, setProducts] = useState<Product[]>([]);
     const sample: Product[] = [
         ...Array.from({ length: 30 }, (_, i) => {
             const categoryOptions = ["Coffee", "Latte", "Milk Tea", "Espresso", "Mocha", "Macchiato", "Cold Brew"];
