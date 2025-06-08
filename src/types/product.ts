@@ -4,7 +4,7 @@ export interface Product {
     description: string;
     price: number;
     sizes: string[];
-    toppings: [];
+    toppings?: string[];
     image: string;
     categories: string[];
     status: boolean;

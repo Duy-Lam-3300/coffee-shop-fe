@@ -72,43 +72,42 @@ export default function Header() {
                         </li>))}
                     </ul>
                 </nav>
-                <div className="md:flex hidden justify-between items-center relative w-[12rem] group">
-                    <nav >
-                        <ul className="flex justify-between space-x-4">
-                            <li className="hover:scale-110 cursor-pointer relative"><ShoppingCart className="w-7 h-7" />
-                                <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>{cartItemsLength}</p></div>
-                            </li>
+                <div className="md:flex hidden justify-between items-center relative w-[12rem] ">
+                    <div className="hover:scale-110 cursor-pointer relative group"><ShoppingCart className="w-7 h-7" />
+                        <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>{cartItemsLength}</p></div>
 
-                        </ul>
-                    </nav>
-                    <div className="flex gap-2"><a className="cursor-pointer hover:underline hover:scale-110">Login</a><span className="cursor-default"> / </span><a className="cursor-pointer hover:underline hover:scale-110">Signup</a></div>
+                        <div className="group-hover:block hidden absolute bg-white shadow-2xl border-3 border-gray-200 shadow-gray-400 p-8  bottom-0 -right-3 translate-y-full  h-fit w-[20rem]">
+                            <ul >
+                                {cartItems.length > 0 ?
 
-                    <div className="group-hover:block hidden absolute bg-white shadow-2xl border-3 border-gray-200 shadow-gray-400 p-8  bottom-0 right-0 translate-y-full  h-fit w-[20rem]">
-                        <ul >
-                            {cartItems.map((item, index) => (
+                                    cartItems.map((item, index) => (
 
-                                <li key={index} className="">
-                                    <div className="grid grid-cols-[auto_minmax(0,1fr)] grid-rows-2  gap-2">
-                                        <div className="w-16 h-16 relative row-span-2">
-                                            <Image src={item?.img || "/logoMobile.png"} alt="product" fill className="rounded-md border-2 border-gray-400" />
-                                        </div>
-                                        <div className="flex justify-between items-start">
-                                            <span className="text-xl">{item.name}</span>
-                                            <CircleX className="cursor-pointer" onClick={() => handleRemoveItem(item.id)} />
-                                        </div>
-                                        <div className="flex justify-between items-end">
-                                            <span className="text-base text-gray-500">
-                                                {item.quantity} * {item.price}$
-                                            </span>
-                                            <span className="text-lg text-red-500">{item.quantity * item.price}$</span>
-                                        </div>
-                                    </div>
-                                    <hr className="text-gray-400 my-4" />
-                                </li>
+                                        <li key={index} className="">
+                                            <div className="grid grid-cols-[auto_minmax(0,1fr)] grid-rows-2  gap-2">
+                                                <div className="w-16 h-16 relative row-span-2">
+                                                    <Image src={item?.img || "/logoMobile.png"} alt="product" fill className="rounded-md border-2 border-gray-400" />
+                                                </div>
+                                                <div className="flex justify-between items-start">
+                                                    <span className="text-xl">{item.name}</span>
+                                                    <CircleX className="cursor-pointer" onClick={() => handleRemoveItem(item.id)} />
+                                                </div>
+                                                <div className="flex justify-between items-end">
+                                                    <span className="text-base text-gray-500">
+                                                        {item.quantity} * {item.price}$
+                                                    </span>
+                                                    <span className="text-lg text-red-500">{item.quantity * item.price}$</span>
+                                                </div>
+                                            </div>
+                                            <hr className="text-gray-400 my-4" />
+                                        </li>
 
-                            ))}
-                        </ul>
+                                    )
+
+                                    ) : (<p>No items in the cart.</p>)}
+                            </ul>
+                        </div>
                     </div>
+                    <div className="flex gap-2"><a className="cursor-pointer hover:underline hover:scale-110">Login</a><span className="cursor-default"> / </span><a className="cursor-pointer hover:underline hover:scale-110">Signup</a></div>
 
 
                 </div>
@@ -124,11 +123,12 @@ export default function Header() {
                     </Link>
                     <Link className={`font-bold text-4xl ${dancingScript.className}  mr-6`} href={"/"}>CoffeLa</Link>
 
-                    <div className="hover:scale-110 cursor-pointer absolute right-16"><ShoppingCart className="w-7 h-7" />
-                        <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>{cartItemsLength}</p></div>
-                    </div>
-                    <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-3xl cursor-pointer ">
+                    <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-3xl cursor-pointer relative">
                         ☰
+                        {!isMenuOpen && (
+                            <div className="absolute -top-2 -right-4 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>{cartItemsLength}</p></div>
+                        )}
+
                     </button>
                 </div>
 
@@ -152,8 +152,13 @@ export default function Header() {
                                     <li onClick={() => handleRouting(item.path)} key={item.path} className="border-b-1  border-white text-white py-4 flex justify-between pr-2 cursor-pointer text-xl "><span>{item.name}</span><span>→</span></li>
                                 ))}
 
-                                <li onClick={() => handleRouting("")} className="py-4 mt-4 flex justify-between pr-2">
+                                <li>
+                                    <div className="hover:scale-110 cursor-pointer  w-fit relative"><ShoppingCart className="w-7 h-7" />
+                                        <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>{cartItemsLength}</p></div>
 
+                                    </div>
+                                </li>
+                                <li onClick={() => handleRouting("")} className="py-4 mt-4 flex justify-between pr-2">
                                     <div className="flex gap-8"><a className="cursor-pointer hover:underline hover:scale-110">Login</a><span> / </span><a className="cursor-pointer hover:underline hover:scale-110">Signup</a></div>
                                 </li>
                             </ul>
