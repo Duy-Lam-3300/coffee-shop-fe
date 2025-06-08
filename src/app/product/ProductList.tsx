@@ -3,7 +3,7 @@
 import { DetailProductCard } from "@/components/ProductCard";
 // import productAPI from "@/lib/api/productApi"
 import { Product } from "@/types/product";
-import {  useMemo } from "react"
+import { useMemo } from "react"
 
 
 import { useSearchParams, useRouter } from "next/navigation";
@@ -91,6 +91,7 @@ export default function ProductList() {
         <div className="py-12 bg-white">
             <div className="max-w-7xl mx-auto ">
                 <div className="">
+                    <h2>s</h2>
                     {/* <h2 className={`font-bold text-5xl ${dancingScript.className}    `}>Products</h2> */}
                 </div>
                 <div className="flex gap-8">
