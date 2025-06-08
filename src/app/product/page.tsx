@@ -3,7 +3,7 @@
 import { DetailProductCard } from "@/components/ProductCard";
 // import productAPI from "@/lib/api/productApi"
 import { Product } from "@/types/product";
-import {  useMemo, useState } from "react"
+import {  useMemo } from "react"
 
 
 import { useSearchParams, useRouter } from "next/navigation";
