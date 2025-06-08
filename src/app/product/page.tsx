@@ -1,7 +1,7 @@
-import ProductList from "./productList";
+import ProductList from "./ProductList";
 
-export default function ProductPage(){
-    return(<div>
-        <ProductList/>
+export default function ProductPage() {
+    return (<div>
+        <ProductList />
     </div>)
 }
