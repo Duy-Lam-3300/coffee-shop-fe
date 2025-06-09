@@ -140,7 +140,9 @@ export function DetailProductCard({ product }: ProductCardProps) {
     const totalPrice = (product.price + extraCharge).toFixed(2);
 
     const dispatch = useAppDispatch();
-    const handleAddToCart = () => {
+
+    const handleAddToCart = (e: React.MouseEvent) => {
+        e.stopPropagation();
         dispatch(addToCart({ id: product._id, name: product.name, price: product.price, quantity: 1, img: product.image }))
         setIsAnimating(true);
 
@@ -173,7 +175,7 @@ export function DetailProductCard({ product }: ProductCardProps) {
                                 Out of Stock
                             </span>
                         )}
-                        <span className="text-black font-bold text-2xl md:text-base not-md:absolute not-md:w-fit not-md:top-0 not-md:right-0">${totalPrice}</span>
+                        <span className="text-black md:hidden font-bold text-2xl md:text-base not-md:absolute not-md:w-fit not-md:top-0 not-md:right-0">${totalPrice}</span>
 
                     </div>
 
@@ -183,7 +185,7 @@ export function DetailProductCard({ product }: ProductCardProps) {
                         <div className=" flex gap-4 items-center ">
                             <div className="flex flex-wrap gap-2">
                                 {product.sizes.map(size => (
-                                    <button onClick={() => setCartForm((prev) => ({ ...prev, choosenSize: size }))} key={size} className={`text-xs cursor-pointer  px-2 py-1 rounded ${size == cartForm.choosenSize ? "bg-[var(--main-color)] text-white font-semibold" : "bg-gray-100 hover:bg-[var(--lighter-main-color)] hover:font-bold"}`}>
+                                    <button onClick={(e) => { e.stopPropagation(); setCartForm((prev) => ({ ...prev, choosenSize: size })) }} key={size} className={`text-xs cursor-pointer  px-2 py-1 rounded ${size == cartForm.choosenSize ? "bg-[var(--main-color)] text-white font-semibold" : "bg-gray-100 hover:bg-[var(--lighter-main-color)] hover:font-bold"}`}>
                                         {size.toUpperCase()}
                                     </button>
                                 ))}
@@ -217,7 +219,7 @@ export function DetailProductCard({ product }: ProductCardProps) {
                         }`}
                     whileTap={{ scale: 0.85 }}
                     disabled={!product.status}
-                    onClick={handleAddToCart}
+                    onClick={(e) => handleAddToCart(e)}
                 >
                     <motion.span
                         key={isAnimating ? "animate" : "static"}

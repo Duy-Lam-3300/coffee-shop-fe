@@ -7,6 +7,7 @@ import { useMemo } from "react"
 
 
 import { useSearchParams, useRouter } from "next/navigation";
+import Image from "next/image";
 
 // import { Dancing_Script } from "next/font/google";
 // const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
@@ -63,7 +64,7 @@ export default function ProductList() {
     const router = useRouter();
 
     const currentType = searchParams.get('type') || drinkTypes[0].type;
-    const currentCategory = searchParams.get('cat')
+    const currentCategory = searchParams.get('cat') || drinkTypes[0].categories[0];
 
     const selectedType = useMemo(() => {
         return drinkTypes.find((d) => d.type === currentType) || drinkTypes[0]
@@ -88,38 +89,40 @@ export default function ProductList() {
     //     fetching();
     // }, [])
     return (
-        <div className="py-12 bg-white">
+        <div className="py-0 md:py-8 bg-white">
             <div className="max-w-7xl mx-auto ">
-                <div className="">
-                    <h2>s</h2>
-                    {/* <h2 className={`font-bold text-5xl ${dancingScript.className}    `}>Products</h2> */}
+                <div className="grid grid-row-2">
+                    <div className="flex gap-8  not-md:px-8 not-md:row-start-2 not-md:mb-8 not-md:mt-4 text-xl mb-3">
+                        {drinkTypes.map((type) => (
+                            <button
+                                key={type.type}
+                                onClick={() => handleTypeChange(type.type)}
+                                className={`cursor-pointer ${type.type === currentType ? "text-black font-semibold border-b-2" : "text-gray-400"
+                                    }`}
+                            >
+                                {type.type}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="w-full h-[38vh] md:h-[60vh] mb-5 md:mt-4  right relative md:rounded-2xl overflow-hidden md:border-2 border-gray-200"><Image src="/productBackground.png" alt="CoffeLa Large Image" fill /></div>
                 </div>
-                <div className="flex gap-8">
-                    {drinkTypes.map((type) => (
-                        <button
-                            key={type.type}
-                            onClick={() => handleTypeChange(type.type)}
-                            className={` ${type.type === currentType ? "text-black font-semibold border-b-2" : "text-gray-400"
-                                }`}
-                        >
-                            {type.type}
-                        </button>
-                    ))}
-                </div>
-                <div className="flex gap-8">
+
+
+                <div className="flex gap-8 gap-y-4  not-md:px-9 text-xl mt-2 flex-wrap">
                     {selectedType.categories.map((cat) => (
                         <button
                             key={cat}
                             onClick={() => handleCategoryChange(cat)}
-                            className={` ${cat === currentCategory ? "text-black bg-gray-200 px-4 py-2 rounded-4xl font-semibold" : "text-gray-400"
+                            className={`cursor-pointer ${cat === currentCategory ? "text-white bg-[#323232] px-4 py-1 rounded-2xl font-semibold" : "text-gray-400"
                                 }`}
                         >
                             {cat}
                         </button>
                     ))}
                 </div>
-                <div className="gap-12 my-12">
-                    <div className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-8 w-full not-md:px-8">
+                <div className="gap-12 my-8">
+                    <div className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-8 w-full  not-md:px-8">
                         {sample.map((product) => (
                             <DetailProductCard key={product._id} product={product} />
                         ))}

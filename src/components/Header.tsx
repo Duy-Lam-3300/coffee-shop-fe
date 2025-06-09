@@ -1,16 +1,16 @@
 "use client"
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ShoppingCart, CircleX } from "lucide-react";
 import Image from "next/image";
-import { Dancing_Script } from "next/font/google";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-
 import { useAppDispatch } from "@/hooks/store";
-
 import { removeFromCart } from "@/redux/store/slice/cartSlice";
+import { motion } from "framer-motion";
+
+import { Dancing_Script } from "next/font/google";
 
 const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -56,30 +56,53 @@ export default function Header() {
             document.body.classList.remove("overflow-hidden");
         };
     }, [isMenuOpen]);
+    const pathname = usePathname();
+    console.log("this", pathname);
+
 
     return (
-        <header className="select-none py-2 px-6 md:pt-4 font-semibold text-lg bg-white w-screen fixed  z-50 h-[10vh] shadow-2xl border-b-2 border-[#e6e6e6]">
+        <header className="select-none py-2 px-6 md:pt-4 font-semibold text-lg bg-white w-screen fixed  z-50 h-[10vh] shadow-lg border-b-2 border-[#e6e6e6]">
             <div className=" justify-between max-w-7xl mx-auto items-center flex relative h-full">
 
-                <Link href={"/"} className={`hidden md:block text-5xl font-bold ${dancingScript.className} pt-1`}>CoffeLa</Link>
+                <Link href={"/"} className={`hidden md:block pt-1`}>
+                    <motion.span
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className={`text-5xl font-bold ${dancingScript.className}`}>
+
+                        CoffeLa
+                    </motion.span>
+
+                </Link>
 
 
                 {/* desktop */}
                 <nav className="md:flex hidden  items-center">
-                    <ul className=" space-x-6 flex">
-                        {NAV_ITEMS.map((item) => (<li className="hover:scale-110 mx-6  hover:border-b-2 h-[2rem]" key={item.path}>
-                            <Link href={item.path} className="navItem text-black ">{item.name}</Link>
-                        </li>))}
+                    <ul className=" space-x-6 flex items-center">
+                        {NAV_ITEMS.map((item, index) => (
+                            // <li className="hover:scale-110 mx-6  hover:border-b-2 h-[2rem]" key={item.path}>
+                            <motion.li
+                                key={item.path}
+                                className={`mx-6  h-fit  ${item.path === pathname ? "text-white bg-[#323232] rounded-2xl border-2 border-white px-4 py-2" : "text-black hover:border-b-2 hover:scale-110 "}`}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3, delay: index * 0.1 }}
+                            >
+
+                                <Link href={item.path} className=" ">{item.name}</Link>
+                            </motion.li>
+                            // </li>
+                        ))}
                     </ul>
                 </nav>
                 <div className="md:flex hidden justify-between items-center relative w-[12rem] ">
                     <div className="hover:scale-110 cursor-pointer relative group"><ShoppingCart className="w-7 h-7" />
                         <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>{cartItemsLength}</p></div>
 
-                        <div className="group-hover:block hidden absolute bg-white shadow-2xl border-3 border-gray-200 shadow-gray-400 p-8  bottom-0 -right-3 translate-y-full  h-fit w-[20rem]">
+                        <div className={`group-hover:block hidden absolute bg-white shadow-2xl border-3 border-gray-200 shadow-gray-400 ${cartItems.length > 0?"p-8":"p-4"}  bottom-0 -right-3 translate-y-full  h-fit w-[20rem]`}>
                             <ul >
                                 {cartItems.length > 0 ?
-
                                     cartItems.map((item, index) => (
 
                                         <li key={index} className="">
@@ -103,7 +126,7 @@ export default function Header() {
 
                                     )
 
-                                    ) : (<p>No items in the cart.</p>)}
+                                    ) : (<p className="font-medium text-base">No items in the cart.</p>)}
                             </ul>
                         </div>
                     </div>
