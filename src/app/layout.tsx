@@ -35,7 +35,7 @@ export default function RootLayout({
         <ReduxProvider>
 
           <Header />
-          <div className="mt-[10vh] w-full ">
+          <div className="mt-[10vh] w-full min-h-[44.05vh]">
             {children}
           </div>
           <Footer />
