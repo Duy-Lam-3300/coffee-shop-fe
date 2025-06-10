@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 import { ReduxProvider } from "@/hooks/ReduxProvider";
+import NativeHeader from "@/components/NativeHeader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,12 +34,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center relative `}
       >
         <ReduxProvider>
-
-          <Header />
-          <div className="mt-[10vh] w-full min-h-[44.05vh]">
-            {children}
-          </div>
-          <Footer />
+          
+            <Header />
+            <NativeHeader />
+            <div className="mt-[10vh] w-full min-h-[44.05vh]">
+              {children}
+            </div>
+            <Footer />
+         
         </ReduxProvider>
       </body>
     </html>

@@ -105,7 +105,7 @@ export default function ProductList() {
                         ))}
                     </div>
 
-                    <div className="w-full h-[38vh] md:h-[60vh] mb-5 md:mt-4  right relative md:rounded-2xl overflow-hidden md:border-2 border-gray-200"><Image src="/productBackground.png" alt="CoffeLa Large Image" fill /></div>
+                    <div className="w-full h-[38vh] md:h-[65vh] mb-5 md:mt-4  right relative md:rounded-2xl overflow-hidden md:border-2 border-gray-200"><Image src="/productBackground.png" alt="CoffeLa Large Image" fill /></div>
                 </div>
 
 

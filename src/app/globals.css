@@ -15,7 +15,7 @@
   --error-color: #e53935;
   --card-color: white;
   --font-size: 18px;
-  --image-background:#eef0f3;
+  --image-background: #eef0f3;
 }
 
 
@@ -44,6 +44,27 @@ body {
   font-family: 'Inter', 'Poppins', 'Plus Jakarta Sans', sans-serif;
 
 
+}
+
+/* .border-cricle::before{
+  position: absolute;
+  content: "";
+  background-color: black;
+  scale: 120%;
+} */
+
+.border-cricle::before {
+  content: '';
+  position: absolute;
+
+  z-index: 0;
+  width: calc(6rem + 8px);
+  height: calc(6rem + 8px);
+  -moz-border-radius: 7.5px;
+  -webkit-border-radius: 7.5px;
+  border-radius: 100%;
+  background-color: #000000;
+  clip-path: inset(0 0 70% 0);
 }
 
 
