@@ -5,7 +5,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Coffee } from "lucide-react";
 import { Flame, Heart } from "lucide-react";
-import { cartServices } from "@/hooks/services/useCartServices";
+import { useCartServices } from "@/hooks/services/useCartServices";
 
 
 interface ProductCardProps {
@@ -23,7 +23,7 @@ export function ProductCard({ product }: ProductCardProps) {
         choosenSize: product ? product.sizes[0] : null,
     });
     const [isAnimating, setIsAnimating] = useState(false);
-    const { addProductToCart } = cartServices();
+    const { addProductToCart } = useCartServices();
     const sizeIndex = product.sizes.indexOf(cartForm.choosenSize || "");
     const extraCharge = sizeIndex >= 0 ? (product.price * (sizeIndex * sizeIndex * 0.4)) : 0;
     const totalPrice = (product.price + extraCharge).toFixed(2);
@@ -135,7 +135,7 @@ export function DetailProductCard({ product }: ProductCardProps) {
         choosenSize: product ? product.sizes[0] : null,
     });
     const [isAnimating, setIsAnimating] = useState(false);
-    const { addProductToCart } = cartServices();
+    const { addProductToCart } = useCartServices();
     const sizeIndex = product.sizes.indexOf(cartForm.choosenSize || "");
     const extraCharge = sizeIndex >= 0 ? (product.price * (sizeIndex * sizeIndex * 0.4)) : 0;
     const totalPrice = (product.price + extraCharge).toFixed(2);
