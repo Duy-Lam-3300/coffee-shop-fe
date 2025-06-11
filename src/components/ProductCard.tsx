@@ -5,7 +5,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Coffee } from "lucide-react";
 import { Flame, Heart } from "lucide-react";
-import { cartServices } from "@/services/cartServices";
+import { cartServices } from "@/hooks/services/useCartServices";
 
 
 interface ProductCardProps {
