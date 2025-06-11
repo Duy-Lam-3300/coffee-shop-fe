@@ -1,12 +1,11 @@
 'use client'
-import { useAppDispatch } from "@/hooks/store";
-import { addToCart } from "@/redux/store/slice/cartSlice";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Coffee } from "lucide-react";
 import { Flame, Heart } from "lucide-react";
+import { cartServices } from "@/services/cartServices";
 
 
 interface ProductCardProps {
@@ -18,24 +17,25 @@ interface CartForm {
 }
 
 
+
 export function ProductCard({ product }: ProductCardProps) {
     const [cartForm, setCartForm] = useState<CartForm>({
         choosenSize: product ? product.sizes[0] : null,
     });
     const [isAnimating, setIsAnimating] = useState(false);
+    const { addProductToCart } = cartServices();
     const sizeIndex = product.sizes.indexOf(cartForm.choosenSize || "");
     const extraCharge = sizeIndex >= 0 ? (product.price * (sizeIndex * sizeIndex * 0.4)) : 0;
     const totalPrice = (product.price + extraCharge).toFixed(2);
-
-    const dispatch = useAppDispatch();
-    const handleAddToCart = () => {
-        dispatch(addToCart({ id: product._id, name: product.name, price: product.price, quantity: 1, img: product.image }))
+    const handleAddProductToCart = () => {
+        addProductToCart({ ...product });
         setIsAnimating(true);
 
         setTimeout(() => {
             setIsAnimating(false)
         }, 600);
     }
+
     return (
         <div className="bg-[var(--card-color)] rounded-xl shadow-xl border-2 border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 p-4">
             <div className="relative md:h-48 h-72 w-full">
@@ -101,7 +101,7 @@ export function ProductCard({ product }: ProductCardProps) {
                         }`}
                     whileTap={{ scale: 0.85 }}
                     disabled={!product.status}
-                    onClick={handleAddToCart}
+                    onClick={handleAddProductToCart}
                 >
                     <motion.span
                         key={isAnimating ? "animate" : "static"}
@@ -135,15 +135,15 @@ export function DetailProductCard({ product }: ProductCardProps) {
         choosenSize: product ? product.sizes[0] : null,
     });
     const [isAnimating, setIsAnimating] = useState(false);
+    const { addProductToCart } = cartServices();
     const sizeIndex = product.sizes.indexOf(cartForm.choosenSize || "");
     const extraCharge = sizeIndex >= 0 ? (product.price * (sizeIndex * sizeIndex * 0.4)) : 0;
     const totalPrice = (product.price + extraCharge).toFixed(2);
 
-    const dispatch = useAppDispatch();
 
-    const handleAddToCart = (e: React.MouseEvent) => {
+    const handleAddProductToCart = (e: React.MouseEvent) => {
         e.stopPropagation();
-        dispatch(addToCart({ id: product._id, name: product.name, price: product.price, quantity: 1, img: product.image }))
+        addProductToCart({ ...product })
         setIsAnimating(true);
 
         setTimeout(() => {
@@ -219,7 +219,7 @@ export function DetailProductCard({ product }: ProductCardProps) {
                         }`}
                     whileTap={{ scale: 0.85 }}
                     disabled={!product.status}
-                    onClick={(e) => handleAddToCart(e)}
+                    onClick={(e) => handleAddProductToCart(e)}
                 >
                     <motion.span
                         key={isAnimating ? "animate" : "static"}

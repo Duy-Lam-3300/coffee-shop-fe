@@ -4,7 +4,7 @@
 export default function NewsPage() {
     return (
         <div>
-news
+            news
         </div>
     )
 }

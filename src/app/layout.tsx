@@ -34,14 +34,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center relative `}
       >
         <ReduxProvider>
-          
-            <Header />
-            <NativeHeader />
-            <div className="mt-[10vh] w-full min-h-[44.05vh]">
-              {children}
-            </div>
-            <Footer />
-         
+
+          <Header />
+          <NativeHeader />
+          <div className="mt-[10vh] w-full min-h-[44.05vh]">
+            {children}
+          </div>
+          <Footer />
+
+
         </ReduxProvider>
       </body>
     </html>

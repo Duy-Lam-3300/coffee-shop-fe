@@ -11,6 +11,7 @@ import { removeFromCart } from "@/redux/store/slice/cartSlice";
 import { motion } from "framer-motion";
 
 import { Dancing_Script } from "next/font/google";
+import { CartItem } from "@/types/cart";
 
 const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -37,7 +38,6 @@ export default function NativeHeader() {
         { name: "News", path: "/news", Icon: Bell },
     ]
 
-    const dispatch = useAppDispatch();
 
     const cartItems = useSelector((state: RootState) => state.cart.items);
     const cartItemsLength = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -47,8 +47,32 @@ export default function NativeHeader() {
         setIsMenuOpen(false);
     }
 
-    const handleRemoveItem = (id: string) => {
-        dispatch(removeFromCart(id));
+    function ItemOnCart({ id, name, img, quantity, price }: CartItem) {
+        const dispatch = useAppDispatch();
+
+        const handleRemoveItem = (id: string) => {
+            dispatch(removeFromCart(id));
+        }
+        return (
+            <>
+                <div className="grid grid-cols-[auto_minmax(0,1fr)] grid-rows-2  gap-2">
+                    <div className="w-16 h-16 relative row-span-2">
+                        <Image src={img || "/logoMobile.png"} alt="product" fill className="rounded-md border-2 border-gray-400" />
+                    </div>
+                    <div className="flex justify-between items-start">
+                        <span className="text-xl">{name}</span>
+                        <CircleX className="cursor-pointer" onClick={() => handleRemoveItem(id)} />
+                    </div>
+                    <div className="flex justify-between items-end">
+                        <span className="text-base text-gray-500">
+                            {quantity} * {price}$
+                        </span>
+                        <span className="text-lg text-black">{quantity * price}$</span>
+                    </div>
+                </div>
+                <hr className="text-gray-400 my-4" />
+            </>
+        )
     }
 
 
@@ -94,27 +118,12 @@ export default function NativeHeader() {
                         <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>{cartItemsLength}</p></div>
 
                         <div className={`group-hover:block hidden absolute bg-white shadow-2xl border-3 border-gray-200 shadow-gray-400 ${cartItems.length > 0 ? "p-8" : "p-4"}  bottom-0 -right-3 translate-y-full  h-fit w-[20rem]`}>
-                            <ul >
+                            <ul className="max-h-[18rem] overflow-auto my-4">
                                 {cartItems.length > 0 ?
                                     cartItems.map((item, index) => (
 
                                         <li key={index} className="">
-                                            <div className="grid grid-cols-[auto_minmax(0,1fr)] grid-rows-2  gap-2">
-                                                <div className="w-16 h-16 relative row-span-2">
-                                                    <Image src={item?.img || "/logoMobile.png"} alt="product" fill className="rounded-md border-2 border-gray-400" />
-                                                </div>
-                                                <div className="flex justify-between items-start">
-                                                    <span className="text-xl">{item.name}</span>
-                                                    <CircleX className="cursor-pointer" onClick={() => handleRemoveItem(item.id)} />
-                                                </div>
-                                                <div className="flex justify-between items-end">
-                                                    <span className="text-base text-gray-500">
-                                                        {item.quantity} * {item.price}$
-                                                    </span>
-                                                    <span className="text-lg text-black">{item.quantity * item.price}$</span>
-                                                </div>
-                                            </div>
-                                            <hr className="text-gray-400 my-4" />
+                                            <ItemOnCart {...item} />
                                         </li>
 
                                     )
@@ -123,7 +132,7 @@ export default function NativeHeader() {
                             </ul>
                             {cartItems.length > 0 && (
                                 <div className="space-y-2">
-                                    <div className="cursor-pointer text-center w-full bg-[#323232] font-medium text-white py-1">View detail</div>
+                                    <div className="cursor-pointer text-center w-full bg-[#323232] font-medium text-white py-1"><Link href={"/cart"}>View detail</Link></div>
                                     <div className="cursor-pointer text-center w-full bg-[#323232] font-medium text-white py-1">Pay</div>
                                 </div>
                             )}

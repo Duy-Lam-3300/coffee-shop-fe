@@ -47,7 +47,7 @@ export default function ProductList() {
                 _id: `680a0d6e4f4c13d4a72ffb${100 + i}`,
                 name: `Coffee ${i + 1}`,
                 price: 25 + (i % 5) * 5,
-                description: "",
+                description: "Kích cỡ: M, Ngọt: Bình thường, Trà: Bình thường, Đá: Bình thường, Topping: Topping Vải (4 trái) x 1,Bánh Flan Phúc Long x 1",
                 sizes: i % 3 === 0 ? ["s", "m"] : i % 3 === 1 ? ["m", "l"] : ["l", "xl"],
                 toppings: [],
                 image: "https://res.cloudinary.com/ddhmn2yiq/image/upload/v1749399198/product/blackcoffee_jkql5f.png",
