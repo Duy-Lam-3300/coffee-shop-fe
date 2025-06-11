@@ -3,7 +3,7 @@ import { useAppDispatch } from "@/hooks/store";
 import { addToCart } from "@/redux/store/slice/cartSlice";
 import { Product } from "@/types/product";
 
-export function cartServices() {
+export function useCartServices() {
     const dispatch = useAppDispatch();
 
     const addProductToCart = (product: Product) => {
