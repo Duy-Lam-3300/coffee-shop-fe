@@ -5,7 +5,7 @@
 // import { motion } from "framer-motion";
 // import { Dancing_Script } from "next/font/google";
 import {  MapPin, Search } from "lucide-react";
-import { useState } from "react";
+// import { useState } from "react";
 
 
 export default function Header() {
