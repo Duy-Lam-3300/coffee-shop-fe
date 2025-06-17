@@ -1,6 +1,11 @@
-
+'use client'
 import { Product } from "@/types/product";
-import {ProductCard} from "../ProductCard";
+import { ProductCard } from "../ProductCard";
+import { useRef, useState } from "react";
+import { useCartServices } from "@/hooks/services/useCartServices";
+interface CartForm {
+    choosenSize: string | null;
+}
 
 
 export default function ExploreProduct() {
@@ -20,6 +25,41 @@ export default function ExploreProduct() {
         }))
     ];
 
+    //product
+    const [openAddItemCart, setOpenAddItemCart] = useState(false)
+
+    const [choosenProduct, setChoosenProduct] = useState<Product>();
+
+    const [isAnimating, setIsAnimating] = useState<string | null>(null);
+
+    const productDetailCardTable = useRef<HTMLDivElement>(null);
+    const { addProductToCart } = useCartServices();
+
+    const handleAddProductToCart = (e: React.MouseEvent<HTMLButtonElement>, product: Product) => {
+        e.stopPropagation();
+        if (!product) {
+            console.warn("Chưa có sản phẩm được chọn");
+            return;
+        }
+        addProductToCart({ ...product });
+        setIsAnimating(product._id);
+
+        setTimeout(() => {
+            setIsAnimating(null)
+        }, 600);
+    }
+
+    const openChooseProductTable = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+        setOpenAddItemCart(true)
+    }
+
+    const closeChooseProductTable = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (productDetailCardTable.current && !productDetailCardTable.current.contains(e.target as Node)) {
+            setOpenAddItemCart(false)
+        }
+    }
+
 
     return (
         <div className="pb-8">
@@ -32,7 +72,7 @@ export default function ExploreProduct() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-8 w-full my-10 not-md:px-8">
                     {sample.map((product) => (
-                        <ProductCard key={product._id} product={product} />
+                        <ProductCard key={product._id} product={product} openChooseProductTable={openChooseProductTable} isAnimating={isAnimating} />
                     ))}
                 </div>
             </div>
