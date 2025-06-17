@@ -8,13 +8,11 @@ import { Flame, Heart, ShoppingCart, X } from "lucide-react";
 
 interface ProductCardProps {
     product: Product;
-
     openChooseProductTable: (e: React.MouseEvent<HTMLButtonElement>, product: Product) => void;
-    isAnimating: string | null;
 }
 
 
-export function ProductCard({ product, openChooseProductTable, isAnimating }: ProductCardProps) {
+export function ProductCard({ product, openChooseProductTable }: ProductCardProps) {
     const totalPrice = (product.price).toFixed(2);
 
 

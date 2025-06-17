@@ -33,9 +33,7 @@ const drinkTypes = [
     }
 ];
 
-interface CartForm {
-    choosenSize: string | null;
-}
+
 
 
 
@@ -171,7 +169,7 @@ export default function ProductList() {
                 <div className="gap-12 my-8">
                     <div className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-8 w-full  not-md:px-8">
                         {sample.map((product) => (
-                            <ProductCard key={product._id} product={product} openChooseProductTable={openChooseProductTable} isAnimating={isAnimating} />
+                            <ProductCard key={product._id} product={product} openChooseProductTable={openChooseProductTable} />
                         ))}
                     </div>
                 </div>
