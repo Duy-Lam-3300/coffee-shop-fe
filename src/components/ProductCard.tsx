@@ -113,7 +113,7 @@ export function ProductDetailCard({ product, isAnimating, handleAddProductToCart
     ];
 
     return (
-        <div className="md:grid md:grid-cols-2 p-8 not-md:h-[100vh] not-md:w-[100vw] bg-white gap-8 border-2 border-gray-300 shadow-2xl md:rounded-lg relative not-md:space-y-4">
+        <div className="md:grid md:grid-cols-2 p-8 pb-20 not-md:h-[100vh] overflow-auto not-md:w-[100vw] bg-white gap-8 border-2 border-gray-300 shadow-2xl md:rounded-lg relative not-md:space-y-4">
             <div onClick={closeChooseProductTable} className="absolute top-2 right-2 cursor-pointer">
                 <X className="  text-gray-400 hover:text-black" strokeWidth={3} />
             </div>
@@ -131,7 +131,7 @@ export function ProductDetailCard({ product, isAnimating, handleAddProductToCart
                     <div className="absolute z-10 top-3 right-3 cursor-pointer text-xl" onClick={(e) => { e.stopPropagation(); window.alert("heart") }}> <Heart className={`${false ? "text-red-500" : "text-black"}`} fill={false ? "red" : "white"} /></div>
                 </div>
                 <motion.button
-                    className={`mt-4 w-full not-md:absolute not-md:bottom-0 not-md:left-0 relative py-3 md:py-2 rounded-md text-xl md:text-base font-medium transition-colors cursor-pointer ${product.status
+                    className={`md:mt-4 w-full not-md:fixed not-md:bottom-0 not-md:left-0 relative py-3 md:py-2 rounded-md text-xl md:text-base font-medium transition-colors cursor-pointer ${product.status
                         ? 'bg-[var(--main-color)] hover:bg-[var(--accent-color)] text-white'
                         : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                         }`}
@@ -194,11 +194,11 @@ export function ProductDetailCard({ product, isAnimating, handleAddProductToCart
                 </div>
                 <div className="mt-4">
                     <h2 className="text-lg not-md:text-xl font-semibold">Choose topping</h2>
-                    <div className="flex flex-col gap-1 md:max-h-[13.5rem] max-h-[25rem]  overflow-auto not-md:mt-4">
+                    <div className="flex flex-col gap-1 md:max-h-[13.5rem]  overflow-auto not-md:mt-4">
                         {toppings.map((item, index) => (
                             <div key={index}>
-                                <div className="grid grid-cols-3  items-center" >
-                                    <div className="col-span-2">
+                                <div className="flex justify-between  items-center" >
+                                    <div className="">
                                         <h2 className="text-base not-md:text-lg  font-medium">{item.name}</h2>
                                         <p className="text-base not-md:text-lg  font-medium">{item.price + item.currency}</p>
                                     </div>

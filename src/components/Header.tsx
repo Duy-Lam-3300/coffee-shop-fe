@@ -16,7 +16,7 @@ export default function Header() {
         <header className="select-none py-2 px-8 max-w-7xl font-semibold text-lg bg-[#eef0f3] md:bg-white w-screen flex items-center fixed  md:hidden  z-50 h-[10vh] shadow-lg border-y-2 border-[#e6e6e6]">
             <div className="flex justify-between items-center gap-6">
 
-                <div className="border-2 w-full rounded-md overflow-hidden focus-within:border-black border-gray-500 bg-gray-200 justify-between flex items-center">
+                <div className="border-2 w-fit rounded-md overflow-hidden focus-within:border-black border-gray-500 bg-gray-200 justify-between flex items-center">
                     <input className="outline-none text-base pl-4 py-1" placeholder="Find your drink..." />
                     <button className="h-[2rem] w-[3rem] bg-gray-300  cursor-pointer"><Search className="h-[1.5rem] w-[1.5rem] mx-auto" /></button>
                 </div>
