@@ -135,9 +135,9 @@ export default function CartPage() {
     }
 
     return (
-        <div className="w-full py-10 select-none">
-            <div className="max-w-7xl flex mx-auto justify-between gap-8">
-                <div className="w-full overflow-hidden bg-white border-black border-2 rounded-xl py-2">
+        <div className="w-full md:py-10 select-none">
+            <div className="max-w-7xl md:flex mx-auto justify-between gap-8">
+                <div className={`w-full overflow-hidden bg-white border-black md:border-2 transition-all ${shipTo?"not-md:h-[19rem]":"not-md:h-[23rem]"} rounded-xl py-2`}>
                     <header className="  px-4 pt-2 flex">
                         <button className={`w-full cursor-pointer text-lg font-medium pb-2 hover:text-xl hover:font-semibold ${shipTo ? "border-black border-b-2 font-semibold text-xl" : "border-gray-300 border-b-1 text-gray-400"}`} onClick={() => setShipTo(true)}>Ship to</button>
                         <button className={`w-full cursor-pointer text-lg font-medium pb-2 hover:text-xl hover:font-semibold ${!shipTo ? "border-black border-b-2 font-semibold text-xl" : "border-gray-300 border-b-1 text-gray-400"}`} onClick={() => setShipTo(false)}>Take out</button>
@@ -160,7 +160,7 @@ export default function CartPage() {
                         </ul>
                     </div>
                 </div>
-                <div className="w-full overflow-hidden border-black border-2 rounded-lg py-2 px-4 bg-white">
+                <div className="w-full overflow-hidden border-black md:border-2 border-t-2 md:rounded-lg py-2 px-4 bg-white">
                     <header className="border-b-1 border-gray-300  py-2 flex gap-2 items-center">
                         <ShoppingCart strokeWidth={2.8} />
                         <p className="font-semibold text-xl text-end">Your cart {"(" + cartItems?.length + " items)"}</p>
@@ -187,6 +187,23 @@ export default function CartPage() {
                                 </div>
                             ))}
                         </div>
+                        <div className=" md:hidden">
+                            <ul className="space-y-6">
+                                {shiptoInformation.slice(3).map((item, index) => (
+                                    <li className={`flex items-start `} key={index}>
+                                        {/* <item.Icon className="w-8 min-w-8 h-8" /> */}
+                                        <div className="w-fit space-y-2">
+                                            <h2 className="text-lg font-semibold">{item.label}</h2>
+                                            <div className="space-y-2">{item.value.split("\n").length > 1 ? item.value.split("\n").map((val, index) => (
+                                                <p key={index}>-    {val}</p>
+                                            )) : item.value.split("\n").map((val, index) => (
+                                                <p key={index}>{val}</p>
+                                            ))}</div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                         <div className="space-y-2 ">
                             <header className=" text-lg font-semibold">
                                 Payment Methods
@@ -204,7 +221,7 @@ export default function CartPage() {
                             <label htmlFor="checkbox" className="cursor-pointer">I have read, understood, and agree to all related term, conditions, and policies.</label>
                         </div>
                     </div>
-                    <button className={`${agreeTerm ? "bg-[#323232] hover:bg-[#515050] text-white cursor-pointer" : "text-[#909192] bg-gray-200 font-semibold cursor-not-allowed"} w-full  h-[3rem] rounded-md mb-2`}>PROCEED TO PAYMENT</button>
+                    <button className={`${agreeTerm ? "bg-[#323232] hover:bg-[#515050] text-white font-semibold cursor-pointer" : "text-[#909192] bg-gray-200 cursor-not-allowed"} w-full  h-[3rem] rounded-md mb-2`}>PROCEED TO PAYMENT</button>
 
                 </div>
             </div>

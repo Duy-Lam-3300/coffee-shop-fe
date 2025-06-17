@@ -1,13 +1,14 @@
 "use client"
 
-import { DetailProductCard } from "@/components/ProductCard";
+import { ProductCard, ProductDetailCard } from "@/components/ProductCard";
 // import productAPI from "@/lib/api/productApi"
 import { Product } from "@/types/product";
-import { useMemo } from "react"
+import { useMemo, useRef, useState } from "react"
 
 
 import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import { useCartServices } from "@/hooks/services/useCartServices";
 
 // import { Dancing_Script } from "next/font/google";
 // const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
@@ -31,6 +32,9 @@ const drinkTypes = [
         categories: ["Peach", "Passion", "Berry", "Lemon"]
     }
 ];
+
+
+
 
 
 export default function ProductList() {
@@ -81,6 +85,47 @@ export default function ProductList() {
     }
 
 
+    //product
+    const [openAddItemCart, setOpenAddItemCart] = useState(false)
+
+    const [choosenProduct, setChoosenProduct] = useState<Product | undefined>();
+
+    const [isAnimating, setIsAnimating] = useState<string | null>(null);
+
+    const productDetailCardTable = useRef<HTMLDivElement>(null);
+    const { addProductToCart } = useCartServices();
+
+    const handleAddProductToCart = (e: React.MouseEvent<HTMLButtonElement>, product: Product) => {
+        e.stopPropagation();
+        if (!product) {
+            console.warn("Chưa có sản phẩm được chọn");
+            return;
+        }
+        addProductToCart({ ...product });
+        setIsAnimating(product._id);
+
+        setTimeout(() => {
+            setIsAnimating(null)
+        }, 600);
+    }
+
+    const openChooseProductTable = (e: React.MouseEvent<HTMLButtonElement>, product: Product) => {
+        e.stopPropagation();
+        setOpenAddItemCart(true);
+        setChoosenProduct(product)
+
+    }
+
+    const closeChooseProductTable = () => {
+        setOpenAddItemCart(false)
+
+    }
+    const closeChooseProductTableOutSide = (e: React.MouseEvent<HTMLElement>) => {
+        if (productDetailCardTable.current && !productDetailCardTable.current.contains(e.target as Node)) {
+            closeChooseProductTable();
+        }
+    }
+
     // useEffect(() => {
     //     const fetching = async () => {
     //         const data = await productAPI.getAll();
@@ -89,7 +134,7 @@ export default function ProductList() {
     //     fetching();
     // }, [])
     return (
-        <div className="py-0 md:py-8 bg-white">
+        <div className={`py-0 md:py-8 bg-white`}>
             <div className="max-w-7xl mx-auto ">
                 <div className="grid grid-row-2">
                     <div className="flex gap-8  not-md:px-8 not-md:row-start-2 not-md:mb-8 not-md:mt-4 text-xl mb-3">
@@ -124,11 +169,18 @@ export default function ProductList() {
                 <div className="gap-12 my-8">
                     <div className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-8 w-full  not-md:px-8">
                         {sample.map((product) => (
-                            <DetailProductCard key={product._id} product={product} />
+                            <ProductCard key={product._id} product={product} openChooseProductTable={openChooseProductTable} />
                         ))}
                     </div>
                 </div>
             </div>
+            {openAddItemCart && choosenProduct && (
+                <div className=" inset-0 fixed z-50 flex items-center justify-center bg-[#00000080] " onClick={closeChooseProductTableOutSide}>
+                    <div ref={productDetailCardTable}>
+                        <ProductDetailCard product={choosenProduct} isAnimating={isAnimating} handleAddProductToCart={handleAddProductToCart} closeChooseProductTable={closeChooseProductTable} />
+                    </div>
+                </div>
+            )}
 
         </div>
 

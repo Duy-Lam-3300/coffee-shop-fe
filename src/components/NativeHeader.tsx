@@ -219,8 +219,10 @@ export default function NativeHeader() {
                                     <li onClick={() => handleRouting(item.path)} key={item.path} className="border-b-1  border-white text-white py-4 flex justify-between pr-2 cursor-pointer text-xl "><span>{item.name}</span><span>→</span></li>
                                 ))}
 
-                                <li>
-                                    <div className="hover:scale-110 cursor-pointer  w-fit relative"><ShoppingCart className="w-7 h-7" />
+                                <li >
+                                    <div className="hover:scale-110 cursor-pointer  w-fit relative">
+
+                                        <ShoppingCart className="w-7 h-7" onClick={() => handleRouting("/cart")} />
                                         <div className="absolute -top-2 -right-2 text-xs bg-red-500 flex items-center  justify-center text-white rounded-full w-5 h-5"><p>{cartItemsLength}</p></div>
 
                                     </div>
