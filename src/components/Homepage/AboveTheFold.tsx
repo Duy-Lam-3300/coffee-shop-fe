@@ -1,8 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Dancing_Script } from "next/font/google";
-const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
-
 
 export default function AboveTheFold() {
     const information = {
@@ -20,7 +17,7 @@ export default function AboveTheFold() {
         <div className="bg-[#e6e6e6] md:pt-[5rem]">
             <div className="flex justify-between items-center mx-auto max-w-7xl h-[40vh] md:h-[70vh] gap-16 relative">
                 <div className="w-1/2  left my-auto z-10 md:-translate-y-[2.5rem] -translate-y-[0.5rem] ml-8 md:ml-0">
-                    <h1 className={`md:text-8xl text-6xl font-extrabold my-4 bg-clip-text ${dancingScript.className}`}>{information.appName}</h1>
+                    <h1 className={`md:text-8xl text-6xl font-extrabold my-4 bg-clip-text brand-font`}>{information.appName}</h1>
                     {/* <h1 className={`text-8xl font-extrabold my-4 bg-clip-text text-[transparent] 
                     bg-black`}>{information.appName}</h1> */}
                     <div className="">
@@ -34,7 +31,7 @@ export default function AboveTheFold() {
                             <span className="z-10 group-hover:text-white duration-300 relative transition-colors ">
                                 Explore more {">"}
                             </span>
-                            <span className="bg-black z-0  absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"/>
+                            <span className="bg-black z-0  absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out" />
                         </button>
                         <Link href="" className="underline underline-offset-4  px-4 py-2 font-semibold cursor-pointer">Login / Signup</Link>
                     </div>

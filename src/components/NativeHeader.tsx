@@ -10,10 +10,8 @@ import { useAppDispatch } from "@/hooks/store";
 import { removeFromCart } from "@/redux/store/slice/cartSlice";
 import { motion } from "framer-motion";
 
-import { Dancing_Script } from "next/font/google";
 import { CartItem } from "@/types/cart";
 
-const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
 
 
 
@@ -38,6 +36,10 @@ export default function NativeHeader() {
         { name: "News", path: "/news", Icon: Bell },
     ]
 
+    const GUEST_NAV_LINKS = [
+        { name: "Login", path: "/user/login" },
+        { name: "Sign up", path: "/user/signup" },
+    ]
 
     const cartItems = useSelector((state: RootState) => state.cart.items);
     const cartItemsLength = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -80,12 +82,12 @@ export default function NativeHeader() {
         <header className="not-md:border-t-4 not-md:border-black select-none py-2 px-6 md:pt-4 font-semibold text-lg bg-[#eef0f3] md:bg-white w-screen fixed not-md:bottom-0   z-50 h-[10vh] shadow-lg border-y-2 border-[#e6e6e6]">
             <div className=" justify-between max-w-7xl mx-auto items-center flex relative h-full">
 
-                <Link href={"/"} className={`hidden md:block pt-1`}>
+                <Link href={"/"} className={`hidden md:block pt-1 brand-font`}>
                     <motion.span
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className={`text-5xl font-bold ${dancingScript.className}`}>
+                        className={`text-5xl font-bold `}>
 
                         CoffeLa
                     </motion.span>
@@ -138,7 +140,17 @@ export default function NativeHeader() {
                             )}
                         </div>
                     </div>
-                    <div className="flex gap-2"><a className="cursor-pointer hover:underline hover:scale-110">Login</a><span className="cursor-default"> / </span><a className="cursor-pointer hover:underline hover:scale-110">Signup</a></div>
+                    <div className="grid grid-flow-col auto-cols-max gap-2">
+                        {GUEST_NAV_LINKS.map((item, index) => (
+                            <Link key={index} href={item.path} className="cursor-pointer hover:underline hover:scale-110 transition">
+                                {item.name}
+                            </Link>
+                        ))}
+                        <div className="shrink w-[1rem] text-center col-start-2">
+                            <span>/</span>
+                        </div>
+                    </div>
+
 
 
                 </div>
@@ -211,7 +223,7 @@ export default function NativeHeader() {
 
                         <nav className="mt-10">
                             <div className="flex items-end gap-6">
-                                <Link href={"/"} className={` text-5xl font-bold text-white ${dancingScript.className} pt-1`}>CoffeLa</Link>
+                                <Link href={"/"} className={` text-5xl font-bold text-white  pt-1`}>CoffeLa</Link>
                                 <p className="text-sm text-gray-200 font-medium ">Elegance in every sip</p>
                             </div>
                             <ul className="space-y-8 mt-12">
@@ -228,7 +240,17 @@ export default function NativeHeader() {
                                     </div>
                                 </li>
                                 <li onClick={() => handleRouting("")} className="py-4 mt-4 flex justify-between pr-2">
-                                    <div className="flex gap-8"><a className="cursor-pointer hover:underline hover:scale-110">Login</a><span> / </span><a className="cursor-pointer hover:underline hover:scale-110">Signup</a></div>
+                                    <div className="grid grid-flow-col auto-cols-max gap-2">
+                                        {GUEST_NAV_LINKS.map((item, index) => (
+                                            <Link key={index} href={item.path} className="cursor-pointer hover:underline hover:scale-110 transition">
+                                                {item.name}
+                                            </Link>
+                                        ))}
+                                        <div className="shrink w-[1rem] text-center col-start-2">
+                                            <span>/</span>
+                                        </div>
+                                    </div>
+
                                 </li>
                             </ul>
                         </nav>
