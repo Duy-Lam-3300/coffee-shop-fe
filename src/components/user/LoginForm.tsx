@@ -1,4 +1,3 @@
-
 'use client'
 import Link from "next/link";
 import { useState } from "react";
@@ -55,7 +54,6 @@ export default function LoginForm() {
                     <input type="checkbox" id="rememberCheck" />
                     <label htmlFor="rememberCheck" className="cursor-pointer">Remember me</label>
                 </div>
-                <a href="" className="font-medium text-black">Forget your password?</a>
             </div>
             <button
                 type="submit"
