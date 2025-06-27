@@ -1,4 +1,3 @@
-
 'use client'
 import Link from "next/link";
 import { useState } from "react";
@@ -55,7 +54,6 @@ export default function LoginForm() {
                     <input type="checkbox" id="rememberCheck" />
                     <label htmlFor="rememberCheck" className="cursor-pointer">Remember me</label>
                 </div>
-                <a href="" className="font-medium text-black">Forget your password?</a>
             </div>
             <button
                 type="submit"
@@ -64,7 +62,7 @@ export default function LoginForm() {
                 Login
             </button>
             <div className="flex gap-2">
-                <label className="text-gray-600">Don't have account?</label> <Link href="./signup" id="signupLink">Signup now</Link>
+                <label className="text-gray-600">Don{"'"}t have account?</label> <Link href="./signup">Signup now</Link>
             </div>
         </form>
     );
