@@ -1,8 +1,6 @@
 import { LeafyGreen, Palette, Coffee } from 'lucide-react';
 import Image from 'next/image';
-import { Dancing_Script } from "next/font/google";
 import Link from 'next/link';
-const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["400", "700"] });
 
 export default function BrandStory() {
     const coffeeBean = "/bagofcoffeebean.jpg"
@@ -20,7 +18,7 @@ export default function BrandStory() {
                 <div className="space-y-2 ">
                     <div className="italic">Brand Story</div>
                     <h2 className="font-bold text-2xl hidden md:block"> CoffeeLa – A Cup of Calm in a Bussy World</h2>
-                    <Link href={"/"} className={` md:hidden block text-5xl font-bold ${dancingScript.className} pt-1`}>CoffeLa</Link>
+                    <Link href={"/"} className={` md:hidden block text-5xl font-bold  pt-1`}>CoffeLa</Link>
                     <p className='md:hidden text-lg'>A Cup of Calm in a Bussy World</p>
                 </div>
                 <div className="hidden md:flex gap-8 text-lg text-gray-700">
