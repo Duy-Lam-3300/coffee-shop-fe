@@ -64,7 +64,7 @@ export default function LoginForm() {
                 Login
             </button>
             <div className="flex gap-2">
-                <label className="text-gray-600">Don't have account?</label> <Link href="./signup" id="signupLink">Signup now</Link>
+                <label className="text-gray-600">Don't have account?</label> <Link href="./signup">Signup now</Link>
             </div>
         </form>
     );

@@ -1,4 +1,3 @@
-
 'use client'
 import Link from "next/link";
 import { useState } from "react";
@@ -58,13 +57,6 @@ export default function SignupForm() {
                 className="w-full px-2 py-2 mb-4 border-b-2 border-gray-300 focus:outline-none  focus:border-black"
             />
 
-            <div className="w-full flex justify-between">
-                <div className="space-x-2">
-                    <input type="checkbox" id="rememberCheck" />
-                    <label htmlFor="rememberCheck" className="cursor-pointer">Remember me</label>
-                </div>
-                <a href="" className="font-medium text-black">Forget your password?</a>
-            </div>
             <button
                 type="submit"
                 className="w-full bg-black text-white py-3 font-semibold cursor-pointer rounded-md hover:bg-gray-700 transition duration-200"
