@@ -1,8 +1,13 @@
 import axiosClient from "../axios";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebaseClient";
-import { LoginInfor } from "@/types/user";
+import { LoginInfor, SigninInfor } from "@/types/user";
+import axios from "axios";
+
+const uri = process.env.NEXT_PUBLIC_API_HTTPS + "/user";
+
 const userApi = {
+
 
     async loginUser({ email, password }: LoginInfor) {
         try {
@@ -21,6 +26,18 @@ const userApi = {
             const data = await response.json();
             console.log("✅ Backend response:", data);
             return data;
+        } catch (error: any) {
+            console.error("Login failed:", error.message);
+        }
+    },
+    async signinUser(signinForm: SigninInfor) {
+        try {
+            console.log(signinForm);
+
+            const response = await axiosClient.post("/user", signinForm);
+            console.log("response", response);
+            return response;
+
         } catch (error: any) {
             console.error("Login failed:", error.message);
         }

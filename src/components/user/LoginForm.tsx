@@ -10,7 +10,6 @@ export default function LoginForm() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    console.log("envss",process.env.NEXT_FIREBASE_APIKEY);
     
 
     const handleSubmit = async (e: React.FormEvent) => {
