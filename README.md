@@ -1,4 +1,4 @@
-# ☕ CoffeLa - Coffee E-Commerce Website
+# ☕ CoffeLa - Coffee E-Commerce Website (In progress)
 
 A full-stack e-commerce website for selling coffee, built with modern web technologies. The app supports roles like **Admin**, **User**, **Guest**, and **Manager**, featuring product management, authentication, secure checkout, and responsive UI.
 
@@ -29,10 +29,21 @@ A full-stack e-commerce website for selling coffee, built with modern web techno
 1. **Clone the repository**
 ```bash
 git clone https://github.com/yourusername/coffee-shop-fe.git
-cd coffeela
+cd coffee-shop-fe
 ```
 2. **Go to coffela backend repository**
 - [NodeJs] https://github.com/Duy-Lam-3300/ecommerce-coffeeshop-backend
+```bash
+git clone https://github.com/yourusername/ecommerce-coffeeshop-backend.git
+cd ecommerce-coffeeshop-backend
+```
+3. **Front-end and Back-end setup**
+```bash
+npm install
+npm run dev
+```
 ## 🌐 Deployment
-  Frontend: Vercel
-  Backend: Render or Railway
+- Frontend: Vercel
+- Backend: Render or Railway
+## 🙋‍♂️ Author
+Nguyễn Duy Lâm – @Duy-Lam-3300
