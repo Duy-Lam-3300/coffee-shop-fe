@@ -27,7 +27,12 @@ A full-stack e-commerce website for selling coffee, built with modern web techno
 ## 🧪 Installation (Local)
 
 1. **Clone the repository**
-
 ```bash
-git clone https://github.com/yourusername/coffeela.git
+git clone https://github.com/yourusername/coffee-shop-fe.git
 cd coffeela
+```
+2. **Go to coffela backend repository**
+- [NodeJs] https://github.com/Duy-Lam-3300/ecommerce-coffeeshop-backend
+## 🌐 Deployment
+  Frontend: Vercel
+  Backend: Render or Railway
