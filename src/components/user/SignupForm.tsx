@@ -30,15 +30,11 @@ export default function SignupForm() {
             console.log(response);
 
 
-        } catch (err: any) {
-            console.error("Login error:", err);
-            // Check for Firebase-style or Axios-style error
-            if (err?.response?.data?.message) {
-                setError(err.response.data.message);
-            } else if (err?.message) {
-                setError(err.message);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                console.log(err.message);
             } else {
-                setError("An unknown error occurred.");
+                console.log("Unknown error:", err);
             }
         }
     };

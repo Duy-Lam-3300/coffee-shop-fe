@@ -23,8 +23,12 @@ const userApi = {
             const data = await response.json();
             console.log("✅ Backend response:", data);
             return data;
-        } catch (error: any) {
-            console.error("Login failed:", error.message);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                console.log(err.message);
+            } else {
+                console.log("Unknown error:", err);
+            }
         }
     },
     async signinUser(signinForm: SigninInfor) {
@@ -35,8 +39,12 @@ const userApi = {
             console.log("response", response);
             return response;
 
-        } catch (error: any) {
-            console.error("Login failed:", error.message);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                console.log(err.message);
+            } else {
+                console.log("Unknown error:", err);
+            }
         }
     }
 }
