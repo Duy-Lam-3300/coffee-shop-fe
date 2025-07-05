@@ -1,4 +1,5 @@
 'use client'
+import userApi from "@/lib/api/userApi";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -9,20 +10,37 @@ export default function LoginForm() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
+    
 
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!email || !password) {
             setError("Please fill in all fields.");
             return;
         }
-        if (email === "test@example.com" && password === "123456") {
-            alert("Login successful!");
-        } else {
-            setError("Invalid email or password.");
+        try {
+            const response = await userApi.loginUser({ email, password });
+
+            // ✅ Check the response type
+            if (response?.token) {
+                console.log("Login successful:", response);
+                // Optionally: save token, redirect, etc.
+            } else {
+                setError("Login failed. Invalid credentials.");
+            }
+        } catch (err: any) {
+            console.error("Login error:", err);
+            // Check for Firebase-style or Axios-style error
+            if (err?.response?.data?.message) {
+                setError(err.response.data.message);
+            } else if (err?.message) {
+                setError(err.message);
+            } else {
+                setError("An unknown error occurred.");
+            }
         }
     };
+
 
     return (
         <form
