@@ -10,7 +10,7 @@ export default function LoginForm() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -28,15 +28,11 @@ export default function LoginForm() {
             } else {
                 setError("Login failed. Invalid credentials.");
             }
-        } catch (err: any) {
-            console.error("Login error:", err);
-            // Check for Firebase-style or Axios-style error
-            if (err?.response?.data?.message) {
-                setError(err.response.data.message);
-            } else if (err?.message) {
-                setError(err.message);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                console.log(err.message);
             } else {
-                setError("An unknown error occurred.");
+                console.log("Unknown error:", err);
             }
         }
     };
