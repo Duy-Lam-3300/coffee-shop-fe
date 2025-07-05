@@ -2,9 +2,6 @@ import axiosClient from "../axios";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebaseClient";
 import { LoginInfor, SigninInfor } from "@/types/user";
-import axios from "axios";
-
-const uri = process.env.NEXT_PUBLIC_API_HTTPS + "/user";
 
 const userApi = {
 
