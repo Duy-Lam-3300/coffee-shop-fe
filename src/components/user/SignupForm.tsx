@@ -1,6 +1,5 @@
 'use client'
 import userApi from "@/lib/api/userApi";
-import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 
